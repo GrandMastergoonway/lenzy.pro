@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #ff2a6d;
+            --primary-dark: #d10053;
+            --secondary: #05d9e8;
+            --accent: #ff2a6d;
+            --dark: #0d0221;
+            --darker: #05010a;
+            --light: #ffffff;
+            --gray: #a5a5a5;
+            --dark-gray: #2a2a2a;
+            --neon-glow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            cursor: none;
+        }
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 42, 109, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(5, 217, 232, 0.05) 0%, transparent 20%);
+        }
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+        }
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+            filter: drop-shadow(0 0 5px var(--secondary));
+        }
+        .cursor.active {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 42, 109, 0.5);
+        }
+        .cursor-follower.active {
+            width: 70px;
+            height: 70px;
+            border-color: var(--primary);
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            border: 2px solid var(--dark);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--primary-dark), var(--secondary));
+        }
+        header {
+            background: linear-gradient(135deg, rgba(13, 2, 33, 0.9) 0%, rgba(5, 1, 10, 0.95) 100%);
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 42, 109, 0.3);
+            box-shadow: 0 0 30px rgba(255, 42, 109, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 42, 109, 0.1) 0%, transparent 30%), radial-gradient(circle at 80% 70%, rgba(5, 217, 232, 0.1) 0%, transparent 30%);
+            z-index: 0;
+            animation: gradientPulse 15s infinite alternate;
+        }
+        @keyframes gradientPulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        header h1 {
+            font-size: 3.5rem;
+            color: var(--light);
+            text-shadow: var(--neon-glow);
+            margin-bottom: 20px;
+            position: relative;
+            animation: neonPulse 2s ease-in-out infinite alternate;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            padding: 0 20px;
+        }
+        @keyframes neonPulse {
+            from { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
+            to { text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--primary), 0 0 40px var(--primary); }
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .discord-btn, .telegram-btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            outline: none;
+        }
+        .discord-btn {
+            background: linear-gradient(135deg, #5865F2 0%, #3b48d1 100%);
+            color: white;
+        }
+        .telegram-btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, #00a6b7 100%);
+            color: white;
+        }
+        .discord-btn::before, .telegram-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
+            z-index: -1;
+        }
+        .discord-btn:hover::before, .telegram-btn:hover::before {
+            left: 100%;
+        }
+        .discord-btn:hover, .telegram-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+        .discord-btn:active, .telegram-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .description {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 30px;
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .description::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .product-card {
+            background: linear-gradient(145deg, rgba(13, 2, 33, 0.7) 0%, rgba(42, 42, 42, 0.5) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 42, 109, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 42, 109, 0.1) 0%, rgba(5, 217, 232, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 42, 109, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(255, 42, 109, 0.4);
+            border-color: var(--primary);
+        }
+        .product-card:hover::before, .product-card:hover::after {
+            opacity: 1;
+        }
+        .product-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 70%, rgba(13, 2, 33, 0.8) 100%);
+            z-index: 1;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.5s ease;
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.15);
+            filter: brightness(1.2) contrast(1.1);
+        }
+        .product-info {
+            padding: 25px;
+            position: relative;
+        }
+        .product-card h3 {
+            color: var(--light);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .product-card:hover h3 {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
+        }
+        .product-description {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 4.5em;
+        }
+        .product-price {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-shadow: 0 0 10px rgba(255, 42, 109, 0.3);
+        }
+        .product-price::before {
+            content: '$';
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .product-badge {
+            position: absolute;
+            top: -15px;
+            right: 25px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(255, 42, 109, 0.4);
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(13, 2, 33, 0.9) 0%, rgba(5, 1, 10, 0.95) 100%);
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 42, 109, 0.3);
+            color: var(--gray);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+            animation: gradientFlow 5s linear infinite;
+            background-size: 200% 100%;
+        }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        footer p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+        .modal.active {
+            display: block;
+            opacity: 1;
+        }
+        .modal-content {
+            background: linear-gradient(145deg, rgba(13, 2, 33, 0.95) 0%, rgba(42, 42, 42, 0.9) 100%);
+            max-width: 1000px;
+            margin: 50px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 42, 109, 0.3);
+            box-shadow: 0 0 50px rgba(255, 42, 109, 0.5);
+            transform: translateY(-50px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--gray);
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        .close-modal:hover {
+            color: var(--primary);
+            transform: rotate(90deg) scale(1.1);
+            background: rgba(255, 42, 109, 0.2);
+        }
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+        .modal-image {
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+        .modal-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 42, 109, 0.1) 0%, rgba(5, 217, 232, 0.1) 100%);
+            z-index: 1;
+        }
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .modal-image:hover img {
+            transform: scale(1.05);
+        }
+        .modal-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+        }
+        .modal-price {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 15px rgba(255, 42, 109, 0.5);
+        }
+        .modal-price::before {
+            content: '$';
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+        .modal-description {
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        .modal-features {
+            margin-bottom: 40px;
+            padding-left: 25px;
+            color: var(--gray);
+            list-style-type: none;
+        }
+        .modal-features li {
+            margin-bottom: 15px;
+            position: relative;
+            font-size: 1.05rem;
+            padding-left: 30px;
+        }
+        .modal-features li::before {
+            content: '✦';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px var(--primary);
+        }
+        .modal-buy-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: bold;
+            margin-top: auto;
+            box-shadow: 0 10px 30px rgba(255, 42, 109, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            align-self: flex-start;
+        }
+        .modal-buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
+            z-index: -1;
+        }
+        .modal-buy-btn:hover::before {
+            left: 100%;
+        }
+        .modal-buy-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 42, 109, 0.6);
+            filter: brightness(1.1);
+        }
+        .modal-buy-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            grid-column: 1 / -1;
+        }
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 8px solid rgba(255, 42, 109, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            border-bottom-color: var(--secondary);
+            animation: spin 1.5s linear infinite;
+            position: relative;
+        }
+        .spinner::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 8px solid transparent;
+            border-radius: 50%;
+            border-left-color: var(--secondary);
+            border-right-color: var(--primary);
+            animation: spinReverse 2s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes spinReverse {
+            to { transform: rotate(-720deg); }
+        }
+        .cart-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 42, 109, 0.5);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            outline: none;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 42, 109, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0); }
+        }
+        .cart-btn:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 42, 109, 0.7);
+            animation: none;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--light);
+            color: var(--primary);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px 35px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(255, 42, 109, 0.5);
+            z-index: 1000;
+            transform: translateX(200%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .notification::before {
+            content: '✓';
+            font-size: 1.5rem;
+        }
+        .notification.active {
+            transform: translateX(0);
+        }
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            filter: blur(5px);
+            opacity: 0.3;
+            animation: floatParticle linear infinite;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { opacity: 0.1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+        @media (max-width: 1200px) {
+            .modal-body { grid-template-columns: 1fr; }
+            .modal-image { height: 400px; }
+            .modal-title { font-size: 2.2rem; }
+        }
+        @media (max-width: 992px) {
+            header h1 { font-size: 2.8rem; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+            .modal-content { margin: 30px; }
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .social-buttons { flex-direction: column; align-items: center; gap: 15px; }
+            .discord-btn, .telegram-btn { width: 80%; justify-content: center; }
+            .modal-body { padding: 25px; }
+            .modal-title { font-size: 1.8rem; }
+            .modal-price { font-size: 1.8rem; }
+            .cart-btn { width: 70px; height: 70px; font-size: 1.8rem; bottom: 30px; right: 30px; }
+        }
+        @media (max-width: 576px) {
+            header h1 { font-size: 1.8rem; }
+            .description { font-size: 1rem; margin: 30px auto; }
+            .products-grid { grid-template-columns: 1fr; padding: 20px; }
+            .modal-content { margin: 20px; }
+            .modal-image { height: 300px; }
+            .modal-buy-btn { width: 100%; text-align: center; }
+            .notification { padding: 15px 25px; top: 20px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="particles" id="particles"></div>
+    
+    <header>
+        <h1>Cheap Shop</h1>
+        <div class="social-buttons">
+            <a href="https://discord.com/" class="discord-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://telegram.org/" class="telegram-btn" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="description">
+            <p>Welcome to Lenzy's Extreme Shop! Premium quality products at unbeatable prices. Experience the next level of shopping with our exclusive digital goods and services.</p>
+        </section>
+
+        <section class="products-grid" id="products-container">
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <div class="cart-btn" id="cartBtn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <div class="notification" id="notification">Product added to cart!</div>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Lenzy's Extreme Shop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Shop Configuration
+        const shopConfig = {
+            shopName: "Lenzy's Extreme Shop",
+            socialLinks: {
+                discord: "https://discord.gg/input",
+                telegram: "https://t.me/lenzy_gov"
+            },
+            description: "Premium quality digital goods and services at unbeatable prices. Experience the next level with our exclusive offers!",
+            products: [
+                {
+                    id: 1,
+                    name: "Ethone C2",
+                    description: "High performance botnet with exceptional power and multiple attack methods. Premium quality at affordable prices starting at just $9.99.",
+                    imageUrl: "https://i.ibb.co/trmTHSS/Ethrone-server-banner.png",
+                    price: 9.99,
+                    features: [
+                        "Advanced L4 & L7 capabilities",
+                        "200Gbps+ power against DDoS targets",
+                        "Zero IP logging for complete anonymity",
+                        "Competitive pricing structure",
+                        "24/7 customer support via Telegram"
+                    ],
+                    badge: "BESTSELLER"
+                },
+                {
+                    id: 2,
+                    name: "Discord Nitro Boost",
+                    description: "Premium quality 47-hour valid Nitro links at incredible prices starting at just $5.",
+                    imageUrl: "https://static.beebom.com/wp-content/uploads/2022/01/discord-nitro-body.jpg?w=640",
+                    price: 4.99,
+                    features: [
+                        "Unbeatable price point",
+                        "47-hour valid activation links",
+                        "100% legitimate and verified",
+                        "Fully legal acquisition",
+                        "Instant delivery after purchase"
+                    ],
+                    badge: "NEW"
+                },
+                {
+                    id: 3,
+                    name: "Jupiter Raider",
+                    description: "Advanced Discord raiding tool with comprehensive features including token-joiner functionality and more. Starting at just $7.99.",
+                    imageUrl: "https://i.ibb.co/yFLBXLX0/maxresdefault.jpg",
+                    price: 7.99,
+                    features: [
+                        "Complete server takeover capabilities",
+                        "Token-based account integration",
+                        "Mass message spam functionality",
+                        "Channel flooding tools",
+                        "Regular updates and support"
+                    ],
+                    badge: "HOT"
+                },
+                {
+                    id: 4,
+                    name: "Instagram Growth",
+                    description: "Premium Instagram growth services including followers and likes. High-quality 1k followers for just $3. Packages available from 1k to 25k.",
+                    imageUrl: "https://cdn.prod.website-files.com/637b64a58832c57934e9f106/64925d969d9c387565070c55_IG-Followers.png",
+                    price: 2.99,
+                    features: [
+                        "Industry-low pricing",
+                        "$3 per 1k (followers/likes)",
+                        "100% authentic engagement",
+                        "Real, active accounts only",
+                        "Gradual delivery for safety"
+                    ],
+                    badge: "PREMIUM"
+                },
+                {
+                    id: 5,
+                    name: "Discord Boosts",
+                    description: "High-quality 14x server boosts with 1 month duration. Premium service starting at just $5.",
+                    imageUrl: "https://static1.makeuseofimages.com/wp-content/uploads/2021/04/discord-server-boost-featured-image.jpg",
+                    price: 4.99,
+                    features: [
+                        "Full 14-boost package",
+                        "30-day duration guarantee",
+                        "Instant activation",
+                        "Stealth boosting options",
+                        "Bulk discount available"
+                    ],
+                    badge: "LIMITED"
+                },
+                {
+                    id: 6,
+                    name: "Discord Tokens",
+                    description: "Premium email-verified Discord tokens with no captcha requirements. High-quality accounts starting at just $2.50 for 20 tokens.",
+                    imageUrl: "https://www.electronicshub.org/wp-content/uploads/How-To-Get-A-Discord-Token.jpg",
+                    price: 2.50,
+                    features: [
+                        "Budget-friendly pricing",
+                        "Fully legal token generation",
+                        "Email verified, no captcha",
+                        "Freshly generated accounts",
+                        "Bulk purchase discounts"
+                    ],
+                    badge: "SALE"
+                }
+            ]
+        };
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Initialize custom cursor
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 100);
+            });
+            
+            // Cursor effects on interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .product-card, .close-modal, .cart-btn');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('active');
+                    cursorFollower.classList.add('active');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('active');
+                    cursorFollower.classList.remove('active');
+                });
+            });
+            
+            // Create particles
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = window.innerWidth < 768 ? 30 : 50;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    const size = Math.random() * 10 + 5;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}vw`;
+                    particle.style.top = `${Math.random() * 100}vh`;
+                    const duration = Math.random() * 20 + 10;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            createParticles();
+            
+            // Initialize shop
+            const shopTitle = document.querySelector('header h1');
+            const descriptionSection = document.querySelector('.description p');
+            const discordBtn = document.querySelector('.discord-btn');
+            const telegramBtn = document.querySelector('.telegram-btn');
+            
+            shopTitle.textContent = shopConfig.shopName;
+            descriptionSection.textContent = shopConfig.description;
+            discordBtn.href = shopConfig.socialLinks.discord;
+            telegramBtn.href = shopConfig.socialLinks.telegram;
+            
+            // Cart system
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Render products
+            renderProducts();
+            updateCartCount();
+            
+            function renderProducts() {
+                const productsContainer = document.getElementById('products-container');
+                productsContainer.innerHTML = '';
+                
+                if (shopConfig.products.length === 0) {
+                    productsContainer.innerHTML = '<p class="no-products">No products available at the moment.</p>';
+                    return;
+                }
+                
+                shopConfig.products.forEach(product => {
+                    const productElement = document.createElement('div');
+                    productElement.className = 'product-card animate__animated animate__fadeIn';
+                    productElement.style.animationDelay = `${product.id * 0.1}s`;
+                    
+                    let badgeHTML = '';
+                    if (product.badge) {
+                        badgeHTML = `<div class="product-badge">${product.badge}</div>`;
+                    }
+                    
+                    productElement.innerHTML = `
+                        <a data-id="${product.id}">
+                            <div class="product-image">
+                                <img src="${product.imageUrl}" alt="${product.name}" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                ${badgeHTML}
+                                <h3>${product.name}</h3>
+                                <p class="product-description">${product.description}</p>
+                                <div class="product-price">${product.price.toFixed(2)}</div>
+                            </div>
+                        </a>
+                    `;
+                    productsContainer.appendChild(productElement);
+                    
+                    productElement.querySelector('a').addEventListener('click', () => openProductModal(product.id));
+                });
+            }
+            
+            function openProductModal(productId) {
+                const product = shopConfig.products.find(p => p.id === productId);
+                if (!product) return;
+                
+                let featuresHTML = '';
+                if (product.features && product.features.length > 0) {
+                    featuresHTML = `
+                        <h3 style="margin-bottom: 15px; color: var(--light); font-size: 1.3rem; letter-spacing: 1px;">FEATURES</h3>
+                        <ul class="modal-features">
+                            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    `;
+                }
+                
+                const modalBody = document.getElementById('modalBody');
+                modalBody.innerHTML = `
+                    <div class="modal-image">
+                        <img src="${product.imageUrl}" alt="${product.name}">
+                    </div>
+                    <div class="modal-info">
+                        <h2 class="modal-title">${product.name}</h2>
+                        <div class="modal-price">${product.price.toFixed(2)}</div>
+                        <p class="modal-description">${product.description}</p>
+                        ${featuresHTML}
+                        <button class="modal-buy-btn" data-id="${product.id}">
+                            ADD TO CART
+                        </button>
+                    </div>
+                `;
+                
+                modalBody.querySelector('.modal-buy-btn').addEventListener('click', () => addToCart(product.id));
+                
+                const productModal = document.getElementById('productModal');
+                productModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            document.getElementById('closeModal').addEventListener('click', () => {
+                document.getElementById('productModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            document.getElementById('productModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('productModal')) {
+                    document.getElementById('productModal').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            function addToCart(productId) {
+                const product = shopConfig.products.find(p => p.id === productId);
+                if (!product) return;
+                
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        imageUrl: product.imageUrl,
+                        quantity: 1
+                    });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                showNotification(`${product.name} added to cart!`);
+                
+                const cartBtn = document.getElementById('cartBtn');
+                cartBtn.classList.add('bounce');
+                setTimeout(() => {
+                    cartBtn.classList.remove('bounce');
+                }, 1000);
+            }
+            
+            function updateCartCount() {
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                const cartCount = document.getElementById('cartCount');
+                cartCount.classList.add('pop');
+                setTimeout(() => {
+                    cartCount.classList.remove('pop');
+                }, 300);
+                cartCount.textContent = count;
+            }
+            
+            function showNotification(message) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.classList.add('active');
+                
+                if (message.includes('added')) {
+                    notification.innerHTML = '✓ ' + message;
+                }
+                
+                setTimeout(() => {
+                    notification.classList.remove('active');
+                }, 3000);
+            }
+            
+            document.getElementById('cartBtn').addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showNotification('Your cart is empty!');
+                    return;
+                }
+                
+                const cartModalHTML = `
+                    <div class="modal-content" style="max-width: 600px;">
+                        <span class="close-modal" id="closeCartModal">&times;</span>
+                        <div class="modal-body" style="padding: 30px;">
+                            <h2 class="modal-title" style="margin-bottom: 30px;">YOUR CART</h2>
+                            <div class="cart-items" style="max-height: 400px; overflow-y: auto; margin-bottom: 30px;">
+                                ${cart.map(item => `
+                                    <div class="cart-item" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <div style="display: flex; align-items: center; gap: 15px;">
+                                            <img src="${item.imageUrl}" alt="${item.name}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                                            <div>
+                                                <h3 style="color: var(--light); margin-bottom: 5px;">${item.name}</h3>
+                                                <div style="color: var(--primary); font-weight: bold;">$${item.price.toFixed(2)} x ${item.quantity}</div>
+                                            </div>
+                                        </div>
+                                        <button class="remove-item" data-id="${item.id}" style="background: none; border: none; color: var(--primary); font-size: 1.2rem; cursor: pointer;">×</button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                                <h3 style="color: var(--light);">TOTAL:</h3>
+                                <div style="color: var(--primary); font-size: 1.5rem; font-weight: bold;">
+                                    $${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)}
+                                </div>
+                            </div>
+                            <button class="modal-buy-btn" style="width: 100%; text-align: center; justify-content: center;">
+                                PROCEED TO CHECKOUT
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                const cartModal = document.createElement('div');
+                cartModal.className = 'modal active';
+                cartModal.id = 'cartModal';
+                cartModal.innerHTML = cartModalHTML;
+                document.body.appendChild(cartModal);
+                
+                document.getElementById('closeCartModal').addEventListener('click', () => {
+                    cartModal.remove();
+                });
+                
+                cartModal.addEventListener('click', (e) => {
+                    if (e.target === cartModal) {
+                        cartModal.remove();
+                    }
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const id = parseInt(e.target.getAttribute('data-id'));
+                        cart = cart.filter(item => item.id !== id);
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        updateCartCount();
+                        cartModal.remove();
+                        showNotification('Item removed from cart');
+                        
+                        if (cart.length > 0) {
+                            setTimeout(() => {
+                                document.getElementById('cartBtn').click();
+                            }, 500);
+                        }
+                    });
+                });
+                
+                document.querySelector('#cartModal .modal-buy-btn').addEventListener('click', () => {
+                    alert('Checkout functionality would be implemented here!\n\nTotal: $' + 
+                          cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2));
+                });
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) {
+                    document.getElementById('productModal').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
