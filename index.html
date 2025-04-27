@@ -27,6 +27,53 @@
       z-index: 1;
     }
 
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: all 0.5s ease;
+    }
+
+    #continue-btn {
+      color: #ff3232;
+      font-size: 3rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+      animation: pulse 1.5s infinite alternate;
+      transition: all 0.3s ease;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 15px 30px;
+      border-radius: 5px;
+      background: rgba(10, 10, 10, 0.3);
+      border: 2px solid #ff3232;
+    }
+
+    #continue-btn:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+      box-shadow: 0 0 20px rgba(255, 50, 50, 0.5);
+    }
+
+    @keyframes pulse {
+      from {
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+      }
+      to {
+        text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+      }
+    }
+
     .animated-bg {
       position: fixed;
       top: 0;
@@ -236,6 +283,19 @@
       pointer-events: none;
     }
 
+    #audio-player {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 100;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    #audio-player:hover {
+      opacity: 1;
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2.2rem;
@@ -257,10 +317,24 @@
       .social a {
         font-size: 1.5rem;
       }
+
+      #continue-btn {
+        font-size: 2rem;
+        padding: 10px 20px;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="preloader">
+    <div id="continue-btn">Continue</div>
+  </div>
+
+  <audio id="background-music" loop>
+    <source src="song.mp4" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
+
   <div class="animated-bg" id="particles"></div>
   <div class="glow"></div>
 
@@ -304,11 +378,40 @@
       heading.style.opacity = '0';
       heading.style.transform = 'translateY(20px)';
       heading.style.transition = `all 0.6s ease ${index * 0.1 + 0.3}s`;
+    });
+
+    document.querySelector('.top-right-icons').style.display = 'none';
+    document.querySelector('img').style.display = 'none';
+    document.querySelector('h1').style.display = 'none';
+    document.querySelector('h2').style.display = 'none';
+    document.querySelector('p').style.display = 'none';
+    document.querySelector('.social').style.display = 'none';
+    document.querySelector('.footer').style.display = 'none';
+
+    document.getElementById('continue-btn').addEventListener('click', function() {
+      document.getElementById('preloader').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('preloader').style.display = 'none';
+      }, 500);
+      
+      document.querySelector('.top-right-icons').style.display = 'flex';
+      document.querySelector('img').style.display = 'block';
+      document.querySelector('h1').style.display = 'block';
+      document.querySelector('h2').style.display = 'block';
+      document.querySelector('p').style.display = 'block';
+      document.querySelector('.social').style.display = 'flex';
+      document.querySelector('.footer').style.display = 'block';
       
       setTimeout(() => {
-        heading.style.opacity = '1';
-        heading.style.transform = 'translateY(0)';
+        headings.forEach((heading) => {
+          heading.style.opacity = '1';
+          heading.style.transform = 'translateY(0)';
+        });
       }, 100);
+      
+      const audio = document.getElementById('background-music');
+      audio.volume = 1.0;
+      audio.play().catch(e => console.log("Auto-play was prevented:", e));
     });
   </script>
 </body>
