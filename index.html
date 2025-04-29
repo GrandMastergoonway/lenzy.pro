@@ -11,6 +11,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      cursor: none;
     }
 
     body {
@@ -25,6 +26,45 @@
       justify-content: center;
       position: relative;
       z-index: 1;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #ff0000;
+      pointer-events: none;
+      mix-blend-mode: difference;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+
+    .cursor::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: rgba(255, 0, 0, 0.3);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.3);
+        opacity: 0.4;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
     }
 
     #preloader {
@@ -44,33 +84,60 @@
     }
 
     #continue-btn {
-      color: #ff3232;
+      color: #ff0000;
       font-size: 3rem;
       font-weight: 700;
       text-decoration: none;
-      cursor: pointer;
-      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-      animation: pulse 1.5s infinite alternate;
+      cursor: none;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+      animation: pulse-text 1.5s infinite alternate, shake 3s infinite;
       transition: all 0.3s ease;
       font-family: 'Space Grotesk', sans-serif;
-      padding: 15px 30px;
-      border-radius: 5px;
-      background: rgba(10, 10, 10, 0.3);
-      border: 2px solid #ff3232;
+      position: relative;
     }
 
     #continue-btn:hover {
-      transform: scale(1.05);
-      text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
-      box-shadow: 0 0 20px rgba(255, 50, 50, 0.5);
+      transform: scale(1.1);
+      text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 45px #ff0000;
     }
 
-    @keyframes pulse {
-      from {
+    #continue-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ff0000, transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #continue-btn:hover::after {
+      opacity: 1;
+    }
+
+    @keyframes pulse-text {
+      0% {
         text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
       }
-      to {
-        text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+      50% {
+        text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff0000;
+      }
+      100% {
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+      }
+    }
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-2px);
+      }
+      20%, 40%, 60%, 80% {
+        transform: translateX(2px);
       }
     }
 
@@ -164,6 +231,7 @@
     img:hover {
       transform: rotate(5deg) scale(1.05);
       box-shadow: 0 0 30px rgba(255, 50, 50, 0.5);
+      filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.7));
     }
 
     h1 {
@@ -179,6 +247,7 @@
       position: relative;
       padding-bottom: 10px;
       opacity: 0.9;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
     }
 
     h1::after {
@@ -239,6 +308,7 @@
     .social a:hover {
       color: #ff0000;
       transform: translateY(-5px) scale(1.2);
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     }
 
     .social a::before {
@@ -255,6 +325,7 @@
 
     .social a:hover::before {
       transform: scale(1);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
     }
 
     .footer {
@@ -272,6 +343,7 @@
     .footer:hover {
       color: #ff3232;
       opacity: 1;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
     }
 
     .glow {
@@ -281,6 +353,16 @@
       background: radial-gradient(circle at center, rgba(255, 50, 50, 0.05) 0%, transparent 70%);
       z-index: -1;
       pointer-events: none;
+      animation: glowPulse 5s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        opacity: 0.3;
+      }
+      100% {
+        opacity: 0.7;
+      }
     }
 
     #audio-player {
@@ -294,6 +376,18 @@
 
     #audio-player:hover {
       opacity: 1;
+    }
+
+    /* Blood drops animation */
+    .blood-drop {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #ff0000;
+      border-radius: 50%;
+      opacity: 0;
+      z-index: -1;
+      pointer-events: none;
     }
 
     @media (max-width: 768px) {
@@ -320,18 +414,24 @@
 
       #continue-btn {
         font-size: 2rem;
-        padding: 10px 20px;
+      }
+      
+      .cursor {
+        width: 16px;
+        height: 16px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="cursor"></div>
+  
   <div id="preloader">
-    <div id="continue-btn">Continue</div>
+    <div id="continue-btn">[ Continue ]</div>
   </div>
 
   <audio id="background-music" loop>
-    <source src="song.mp4" type="audio/mp4">
+    <source src="lol.mp4" type="audio/mp4">
     Your browser does not support the audio element.
   </audio>
 
@@ -343,7 +443,7 @@
     <a href="mailto:doxbin@lenzy.rest" title="Email"><i class="fas fa-envelope"></i></a>
   </div>
 
-  <img src="https://i.ibb.co/7xnK6WqT/420b085fb2779017d83b8948e25c3d2d.jpg" alt="Lenzy Profile" />
+  <img src="https://i.ibb.co/VYCTT40F/91a8112fde75193abfc769d4a9c047ba.jpg" alt="Lenzy Profile" />
   <h1>Lenzy</h1>
   <h2>Contact For</h2>
   <p>Bot Hosting | Bio Site | Botnet<br>doxbin@lenzy.rest</p>
@@ -360,6 +460,48 @@
   </div>
 
   <script>
+    const cursor = document.querySelector('.cursor');
+    let lastDropTime = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      
+      const now = Date.now();
+      if (now - lastDropTime > 100) { 
+        lastDropTime = now;
+        if (Math.random() > 0.7) { 
+          createBloodDrop(e.clientX, e.clientY);
+        }
+      }
+    });
+    
+    function createBloodDrop(x, y) {
+      const drop = document.createElement('div');
+      drop.classList.add('blood-drop');
+      drop.style.left = (x + Math.random() * 10 - 5) + 'px';
+      drop.style.top = (y + Math.random() * 10 - 5) + 'px';
+      drop.style.width = (Math.random() * 4 + 2) + 'px';
+      drop.style.height = drop.style.width;
+      drop.style.opacity = '0.8';
+      document.body.appendChild(drop);
+      
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * 10 + 5;
+      const targetX = x + Math.cos(angle) * distance;
+      const targetY = y + Math.sin(angle) * distance;
+      
+      const animation = drop.animate([
+        { opacity: 0.8, transform: 'translate(0, 0)' },
+        { opacity: 0, transform: `translate(${targetX - x}px, ${targetY - y}px)` }
+      ], {
+        duration: 500 + Math.random() * 1000,
+        easing: 'cubic-bezier(0.4, 0, 0.6, 1)'
+      });
+      
+      animation.onfinish = () => drop.remove();
+    }
+    
     const particlesContainer = document.getElementById('particles');
     for (let i = 0; i < 30; i++) {
       const particle = document.createElement('div');
@@ -412,6 +554,16 @@
       const audio = document.getElementById('background-music');
       audio.volume = 1.0;
       audio.play().catch(e => console.log("Auto-play was prevented:", e));
+    });
+    
+    const interactiveElements = document.querySelectorAll('a, button, #continue-btn');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
     });
   </script>
 </body>
