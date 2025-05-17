@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #333333;
+            background-color: #222222;
             color: white;
             margin: 0;
             padding: 0;
@@ -117,8 +117,8 @@
 <body>
     <div class="container">
         <button class="music-toggle" id="musicButton">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xOCA2VjRoLTJ2MmgtMnYyaDJ2MmgyVjhoMlY2aC0yWk04IDE2Yy0yLjIxIDAtNC0xLjc5LTQtNHMxLjc5LTQgNC00YzEuMjEgMCAyLjI3LjU1IDMgMS4zM1Y0aDJ2MTJoLTJ2LTEuMzNDMTAuMjcgMTUuNDUgOS4yMSAxNiA4IDE2Wm0wLTZjLTEuMSAwLTIgLjktMiAyczAuOSAyIDIgMiAyLS45IDItMi0uOS0yLTItMloiLz48L3N2Zz4=" alt="Music" class="music-icon">
-            Music
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNiAyMlY0bC02IDItNi0ydjE2bDYtMiA2IDJ6Ii8+PC9zdmc+" alt="Music" class="music-icon">
+            Mute
         </button>
         
         <audio id="audioPlayer" loop>
@@ -170,14 +170,14 @@
             if (isPlaying) {
                 audioPlayer.pause();
                 musicButton.innerHTML = `
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xOCA2VjRoLTJ2MmgtMnYyaDJ2MmgyVjhoMlY2aC0yWk04IDE2Yy0yLjIxIDAtNC0xLjc5LTQtNHMxLjc5LTQgNC00YzEuMjEgMCAyLjI3LjU1IDMgMS4zM1Y0aDJ2MTJoLTJ2LTEuMzNDMTAuMjcgMTUuNDUgOS4yMSAxNiA4IDE2Wm0wLTZjLTEuMSAwLTIgLjktMiAyczAuOSAyIDIgMiAyLS45IDItMi0uOS0yLTItMloiLz48L3N2Zz4=" alt="Music" class="music-icon">
-                    Music
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNiAyMlY0bC02IDItNi0ydjE2bDYtMiA2IDJ6Ii8+PC9zdmc+" alt="Music" class="music-icon">
+                    Mute
                 `;
             } else {
                 audioPlayer.play();
                 musicButton.innerHTML = `
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNiAyMlY0bC02IDItNi0ydjE2bDYtMiA2IDJ6Ii8+PC9zdmc+" alt="Mute" class="music-icon">
-                    Mute
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xOCA2VjRoLTJ2MmgtMnYyaDJ2MmgyVjhoMlY2aC0yWk04IDE2Yy0yLjIxIDAtNC0xLjc5LTQtNHMxLjc5LTQgNC00YzEuMjEgMCAyLjI3LjU1IDMgMS4zM1Y0aDJ2MTJoLTJ2LTEuMzNDMTAuMjcgMTUuNDUgOS4yMSAxNiA4IDE2Wm0wLTZjLTEuMSAwLTIgLjktMiAyczAuOSAyIDIgMiAyLS45IDItMi0uOS0yLTItMloiLz48L3N2Zz4=" alt="Music" class="music-icon">
+                    Music
                 `;
             }
             isPlaying = !isPlaying;
