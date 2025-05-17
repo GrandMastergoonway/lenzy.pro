@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #222222; /* Darker gray background */
+            background-color: #333333;
             color: white;
             margin: 0;
             padding: 0;
@@ -19,20 +19,39 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+        }
+        
+        .music-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1rem;
+        }
+        
+        .music-icon {
+            width: 20px;
+            height: 20px;
         }
         
         .profile-circle {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background-color: #ffffff; /* White background */
+            background-color: #800080;
             margin: 40px auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 5px solid #ffffff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            border: 5px solid #800080;
         }
         
         .profile-circle img {
@@ -53,14 +72,14 @@
         }
         
         .purple-text {
-            color: #b19cd9; /* Light purple */
+            color: #b19cd9;
             font-weight: bold;
         }
         
         .divider {
             width: 80%;
             height: 2px;
-            background-color: #444;
+            background-color: #555;
             margin: 40px auto;
         }
         
@@ -78,34 +97,35 @@
         
         .social-link {
             display: flex;
-            flex-direction: column;
             align-items: center;
             color: white;
             text-decoration: none;
             font-size: 1.2rem;
-            transition: transform 0.3s ease;
-            width: 80px;
-        }
-        
-        .social-link:hover {
-            transform: scale(1.2);
         }
         
         .social-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 10px;
-            filter: brightness(0) invert(1); /* Makes icons white */
-            transition: transform 0.3s ease;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
         }
         
-        .social-link:hover .social-icon {
-            transform: scale(1.3);
+        #audioPlayer {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <button class="music-toggle" id="musicButton">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xOCA2VjRoLTJ2MmgtMnYyaDJ2MmgyVjhoMlY2aC0yWk04IDE2Yy0yLjIxIDAtNC0xLjc5LTQtNHMxLjc5LTQgNC00YzEuMjEgMCAyLjI3LjU1IDMgMS4zM1Y0aDJ2MTJoLTJ2LTEuMzNDMTAuMjcgMTUuNDUgOS4yMSAxNiA4IDE2Wm0wLTZjLTEuMSAwLTIgLjktMiAyczAuOSAyIDIgMiAyLS45IDItMi0uOS0yLTItMloiLz48L3N2Zz4=" alt="Music" class="music-icon">
+            Music
+        </button>
+        
+        <audio id="audioPlayer" loop>
+            <source src="song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
         <div class="profile-circle">
             <img src="photo.png" alt="Profile Photo">
         </div>
@@ -122,23 +142,46 @@
             <h2>All my socials</h2>
             <div class="social-links">
                 <a href="https://discord.com" class="social-link" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/906/906361.png" alt="Discord" class="social-icon">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xOS41NCAwYy0xLjA3IDAtMi4wNi4yOC0yLjk0LjgxQzE1LjM0LjM0IDE0LjE3IDAgMTIuOTQgMGMtMS4yMyAwLTIuNC4zNC0zLjY2LjgxQzguNTIuMjggNy41MyAwIDYuNDYgMEM0LjE0IDAgMi4xMSAxLjA3Ljg1IDIuNjljLTEuMjcgMS42LTEuNjYgMy42OC0xLjUgNS44NEMtLjY3IDEwLjg5LS4wNiAxMy4xNiAxLjEgMTUuMTFjLjUuNzUgMS4wNiAxLjQ0IDEuNyAyLjAzIDEuMDQgMS4xMSAyLjEgMS45OSAzLjM1IDIuNDguNTYuMjMgMS4xLjQ0IDEuNjYuNDQuNTYgMCAxLjEtLjIxIDEuNjYtLjQ0IDEuMjUtLjQ5IDIuMzEtMS4zNyAzLjM1LTIuNDguNjQtLjU5IDEuMi0xLjI4IDEuNy0yLjAzIDEuMTYtMS45NSAxLjc3LTQuMjIgMS43NS02LjU2LjE2LTIuMTYtLjIzLTQuMjQtMS41LTUuODRDMjEuODkgMS4wNyAxOS44NiAwIDE3LjU0IDB6TTguMDIgMTIuMzNjLS42NiAwLTEuMi0uNTktMS4yLTEuMzIgMC0uNzMuNTQtMS4zMyAxLjItMS4zMy42NiAwIDEuMi42IDEuMiAxLjMzIDAgLjczLS41NCAxLjMyLTEuMiAxLjMyem03LjU2IDBjLS42NiAwLTEuMi0uNTktMS4yLTEuMzIgMC0uNzMuNTQtMS4zMyAxLjItMS4zMy42NiAwIDEuMi42IDEuMiAxLjMzIDAgLjczLS41NCAxLjMyLTEuMiAxLjMyeiIvPjwvc3ZnPg==" alt="Discord" class="social-icon">
                     Discord
                 </a>
                 <a href="https://instagram.com" class="social-link" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiA2LjA0YzMuMzIgMCAzLjY0LjAxIDQuOTEuMDcgMS4xOC4wNSAxLjgyLjIyIDIuMjYuNDEuNTcuMjQuOTYuNTQgMS4zOC45Ny40Mi40My43My44Mi45NyAxLjM4LjE5LjQ0LjM2IDEuMDguNDEgMi4yNi4wNiAxLjI3LjA3IDEuNTkuMDcgNC45MSAwIDMuMzItLjAxIDMuNjQtLjA3IDQuOTEtLjA1IDEuMTgtLjIyIDEuODItLjQxIDIuMjYtLjI0LjU3LS41NC45Ni0uOTcgMS4zOC0uNDMuNDItLjgyLjczLTEuMzguOTctLjQ0LjE5LTEuMDguMzYtMi4yNi40MS0xLjI3LjA2LTEuNTkuMDctNC45MS4wNy0zLjMyIDAtMy42NC0uMDEtNC45MS0uMDctMS4xOC0uMDUtMS44Mi0uMjItMi4yNi0uNDEtLjU3LS4yNC0uOTYtLjU0LTEuMzgtLjk3LS40Mi0uNDMtLjczLS44Mi0uOTctMS4zOC0uMTktLjQ0LS4zNi0xLjA4LS40MS0yLjI2LS4wNi0xLjI3LS4wNy0xLjU5LS4wNy00LjkxIDAtMy4zMi4wMS0zLjY0LjA3LTQuOTEuMDUtMS4xOC4yMi0xLjgyLjQxLTIuMjYuMjQtLjU3LjU0LS45Ni45Ny0xLjM4LjQzLS40Mi44Mi0uNzMgMS4zOC0uOTcuNDQtLjE5IDEuMDgtLjM2IDIuMjYtLjQxIDEuMjctLjA2IDEuNTktLjA3IDQuOTEtLjA3em0wLTIuMDVjLTMuMzkgMC0zLjc2LjAxLTUuMDQuMDctMS41OC4wNy0yLjQzLjM0LTMuMjkuNzMtLjg5LjQtMS42MS45NS0yLjMgMS42NC0uNjkuNjktMS4yNCAxLjQxLTEuNjQgMi4zLS4zOS44Ni0uNjYgMS43MS0uNzMgMy4yOS0uMDYgMS4yOC0uMDcgMS42NS0uMDcgNS4wNCAwIDMuMzkuMDEgMy43Ni4wNyA1LjA0LjA3IDEuNTguMzQgMi40My43MyAzLjI5LjQuODkuOTUgMS42MSAxLjY0IDIuMy42OS42OSAxLjQxIDEuMjQgMi4zIDEuNjQuODYuMzkgMS43MS42NiAzLjI5LjczIDEuMjguMDYgMS42NS4wNyA1LjA0LjA3IDMuMzkgMCAzLjc2LS4wMSA1LjA0LS4wNyAxLjU4LS4wNyAyLjQzLS4zNCAzLjI5LS43My44OS0uNCAxLjYxLS45NSAyLjMtMS42NC42OS0uNjkgMS4yNC0xLjQxIDEuNjQtMi4zLjM5LS44Ni42Ni0xLjcxLjczLTMuMjkuMDYtMS4yOC4wNy0xLjY1LjA3LTUuMDQgMC0zLjM5LS4wMS0zLjc2LS4wNy01LjA0LS4wNy0xLjU4LS4zNC0yLjQzLS43My0zLjI5LS40LS44OS0uOTUtMS42MS0xLjY0LTIuMy0uNjktLjY5LTEuNDEtMS4yNC0yLjMtMS42NC0uODYtLjM5LTEuNzEtLjY2LTMuMjktLjczLTEuMjgtLjA2LTEuNjUtLjA3LTUuMDQtLjA3em0wIDUuNTFjLTIuNTcgMC00LjY1IDIuMDktNC42NSA0LjY1IDAgMi41NyAyLjA4IDQuNjUgNC42NSA0LjY1IDIuNTcgMCA0LjY1LTIuMDggNC42NS00LjY1IDAtMi41Ni0yLjA4LTQuNjUtNC42NS00LjY1em0wIDcuNjZjLTEuNjYgMC0zLTEuMzQtMy0zIDAtMS42NiAxLjM0LTMgMy0zIDEuNjYgMCAzIDEuMzQgMyAzIDAgMS42Ni0xLjM0IDMtMyAzem03LjczLTguNjZjMC0uNTUtLjQ1LTEtMS0xcy0xIC40NS0xIDEgLjQ1IDEgMSAxIDEtLjQ1IDEtMXoiLz48L3N2Zz4=" alt="Instagram" class="social-icon">
                     Instagram
                 </a>
                 <a href="https://tiktok.com" class="social-link" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNi42IDguMDFzLTIuMTUtLjEtMi4xNS0yLjE1VjBoMy4yM3YyLjQxYzEuMTYuNDEgMS45NSAxLjU0IDIuODMgMi4zMWguMDF2My4yOWgtNC4wNnYxMC4xOGMwIDQuNDUtNS4yIDQuNDUtNS4yIDBWNy43MWgtMy4yM3YxMy4xMmMwIDYuMDQgNy44MyA2LjA0IDcuODMgMHYtMTIuODJ6Ii8+PC9zdmc+" alt="TikTok" class="social-icon">
                     TikTok
                 </a>
                 <a href="https://youtube.com" class="social-link" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="social-icon">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0yMy40OTggNi4xODVDMjMuMjIgNC44NDEgMjIuMTU2IDMuNzggMjAuODIgMy41MTNDMTguOTQ0IDMuMTIgMTIgMy4xMiAxMiAzLjEycy02Ljk0NCAwLTguODIuMzkzQzEuODQ0IDMuNzguNzgxIDQuODQuNTAyIDYuMTg1Yy0uNDQgMi4yMDQtLjQ0IDYuODE0LS40NCA2LjgxNHMwIDQuNjEuNDQgNi44MTRjLjI3OCAxLjM0NSAxLjM0MiAyLjQwOCAyLjY4IDIuNjg1IDEuODc3LjM5MyA4LjgyLjM5MyA4LjgyLjM5M3M2Ljk0NCAwIDguODItLjM5M2MxLjM0Mi0uMjc3IDIuNDA4LTEuMzQgMi42OC0yLjY4NS40NC0yLjIwNC40NC02LjgxNC40NC02LjgxNHMwLTQuNjEtLjQ0LTYuODE0em0tMTMuMDIgMTAuMDlsNS4zOTgtMy4wNjQtNS4zOTgtMy4wNjR2Ni4xMjh6Ii8+PC9zdmc+" alt="YouTube" class="social-icon">
                     YouTube
                 </a>
             </div>
         </div>
     </div>
+
+    <script>
+        const musicButton = document.getElementById('musicButton');
+        const audioPlayer = document.getElementById('audioPlayer');
+        let isPlaying = false;
+        
+        musicButton.addEventListener('click', function() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                musicButton.innerHTML = `
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xOCA2VjRoLTJ2MmgtMnYyaDJ2MmgyVjhoMlY2aC0yWk04IDE2Yy0yLjIxIDAtNC0xLjc5LTQtNHMxLjc5LTQgNC00YzEuMjEgMCAyLjI3LjU1IDMgMS4zM1Y0aDJ2MTJoLTJ2LTEuMzNDMTAuMjcgMTUuNDUgOS4yMSAxNiA4IDE2Wm0wLTZjLTEuMSAwLTIgLjktMiAyczAuOSAyIDIgMiAyLS45IDItMi0uOS0yLTItMloiLz48L3N2Zz4=" alt="Music" class="music-icon">
+                    Music
+                `;
+            } else {
+                audioPlayer.play();
+                musicButton.innerHTML = `
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNiAyMlY0bC02IDItNi0ydjE2bDYtMiA2IDJ6Ii8+PC9zdmc+" alt="Mute" class="music-icon">
+                    Mute
+                `;
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
 </body>
 </html>
