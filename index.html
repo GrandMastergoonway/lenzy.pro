@@ -1,570 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lenzy</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      cursor: none;
-    }
-
-    body {
-      background: #0a0a0a;
-      color: #e0e0e0;
-      font-family: 'Space Grotesk', sans-serif;
-      overflow-x: hidden;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Custom Cursor */
-    .cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: #ff0000;
-      pointer-events: none;
-      mix-blend-mode: difference;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease;
-    }
-
-    .cursor::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: rgba(255, 0, 0, 0.3);
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-        opacity: 0.7;
-      }
-      50% {
-        transform: scale(1.3);
-        opacity: 0.4;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 0.7;
-      }
-    }
-
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: all 0.5s ease;
-    }
-
-    #continue-btn {
-      color: #ff0000;
-      font-size: 3rem;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: none;
-      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
-      animation: pulse-text 1.5s infinite alternate, shake 3s infinite;
-      transition: all 0.3s ease;
-      font-family: 'Space Grotesk', sans-serif;
-      position: relative;
-    }
-
-    #continue-btn:hover {
-      transform: scale(1.1);
-      text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 45px #ff0000;
-    }
-
-    #continue-btn::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #ff0000, transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    #continue-btn:hover::after {
-      opacity: 1;
-    }
-
-    @keyframes pulse-text {
-      0% {
-        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-      }
-      50% {
-        text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff0000;
-      }
-      100% {
-        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-      }
-    }
-
-    @keyframes shake {
-      0%, 100% {
-        transform: translateX(0);
-      }
-      10%, 30%, 50%, 70%, 90% {
-        transform: translateX(-2px);
-      }
-      20%, 40%, 60%, 80% {
-        transform: translateX(2px);
-      }
-    }
-
-    .animated-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: rgba(255, 50, 50, 0.3);
-      border-radius: 50%;
-      animation: float 15s infinite linear;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) translateX(100px);
-        opacity: 0;
-      }
-    }
-
-    .top-right-icons {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      display: flex;
-      gap: 20px;
-      z-index: 10;
-    }
-
-    .top-right-icons a {
-      color: #ff3232;
-      font-size: 1.4rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-    }
-
-    .top-right-icons a:hover {
-      color: #ff0000;
-      transform: translateY(-3px) scale(1.2);
-    }
-
-    .top-right-icons a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #ff0000, #ff3232);
-      transition: width 0.3s ease;
-    }
-
-    .top-right-icons a:hover::after {
-      width: 100%;
-    }
-
-    img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 3px solid transparent;
-      object-fit: cover;
-      margin-bottom: 25px;
-      z-index: 2;
-      transition: all 0.5s ease;
-      box-shadow: 0 0 20px rgba(255, 50, 50, 0.3);
-      background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
-                  linear-gradient(135deg, #ff0000, #ff3232) border-box;
-    }
-
-    img:hover {
-      transform: rotate(5deg) scale(1.05);
-      box-shadow: 0 0 30px rgba(255, 50, 50, 0.5);
-      filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.7));
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, #ff9999, #ff3232, #ffffff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      z-index: 2;
-      letter-spacing: -1px;
-      font-weight: 700;
-      position: relative;
-      padding-bottom: 10px;
-      opacity: 0.9;
-      text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-    }
-
-    h1::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 2px;
-      background: linear-gradient(90deg, #ff9999, #ff3232);
-      border-radius: 3px;
-    }
-
-    h2 {
-      font-size: 1.4rem;
-      font-weight: 400;
-      margin-bottom: 25px;
-      z-index: 2;
-      font-family: 'JetBrains Mono', monospace;
-      color: #a0a0a0;
-      letter-spacing: 1px;
-    }
-
-    p {
-      max-width: 600px;
-      margin: 0 auto 40px;
-      font-size: 1.1rem;
-      color: #b0b0b0;
-      z-index: 2;
-      text-align: center;
-      line-height: 1.7;
-      font-weight: 300;
-      padding: 0 20px;
-    }
-
-    .social {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      margin-bottom: 40px;
-      z-index: 2;
-    }
-
-    .social a {
-      color: #ff3232;
-      text-decoration: none;
-      font-size: 1.8rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-    }
-
-    .social a:hover {
-      color: #ff0000;
-      transform: translateY(-5px) scale(1.2);
-      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    }
-
-    .social a::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: rgba(255, 50, 50, 0.1);
-      transform: scale(0);
-      transition: transform 0.3s ease;
-      z-index: -1;
-    }
-
-    .social a:hover::before {
-      transform: scale(1);
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-    }
-
-    .footer {
-      position: absolute;
-      bottom: 25px;
-      font-size: 0.9rem;
-      color: #555;
-      z-index: 2;
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 1px;
-      opacity: 0.8;
-      transition: all 0.3s ease;
-    }
-
-    .footer:hover {
-      color: #ff3232;
-      opacity: 1;
-      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
-    }
-
-    .glow {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at center, rgba(255, 50, 50, 0.05) 0%, transparent 70%);
-      z-index: -1;
-      pointer-events: none;
-      animation: glowPulse 5s infinite alternate;
-    }
-
-    @keyframes glowPulse {
-      0% {
-        opacity: 0.3;
-      }
-      100% {
-        opacity: 0.7;
-      }
-    }
-
-    #audio-player {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 100;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
-    }
-
-    #audio-player:hover {
-      opacity: 1;
-    }
-
-    /* Blood drops animation */
-    .blood-drop {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background-color: #ff0000;
-      border-radius: 50%;
-      opacity: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      
-      h2 {
-        font-size: 1.1rem;
-      }
-      
-      p {
-        font-size: 1rem;
-        max-width: 90%;
-      }
-      
-      .social {
-        gap: 20px;
-      }
-      
-      .social a {
-        font-size: 1.5rem;
-      }
-
-      #continue-btn {
-        font-size: 2rem;
-      }
-      
-      .cursor {
-        width: 16px;
-        height: 16px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THIS SITE HAS BEEN SEIZED</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-bottom: 5px solid #d40000;
+        }
+        .logo {
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        .seal {
+            height: 150px;
+            margin: 20px 0;
+        }
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .warning {
+            color: #d40000;
+            font-weight: bold;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #777;
+        }
+        .agencies {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .agency-logo {
+            height: 60px;
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
-  <div class="cursor"></div>
-  
-  <div id="preloader">
-    <div id="continue-btn">[ Continue ]</div>
-  </div>
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/FBI_logo.svg" alt="FBI Logo" class="logo">
+    </div>
+    <div class="content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Seal_of_the_United_States_Federal_Bureau_of_Investigation.svg" alt="FBI Seal" class="seal">
+        <div class="warning">THIS SITE HAS BEEN SEIZED</div>
+        <p>This website has been seized by the Federal Bureau of Investigation in accordance with a seizure warrant obtained by the United States Attorney's Office for the District of Columbia and issued pursuant to 18 U.S.C. §§ 981 and 982.</p>
+        <p>This site was involved in illegal activities in violation of federal laws, including but not limited to: fraud, identity theft, and cybercrime.</p>
+        <p>Individuals accessing this site are subject to monitoring and criminal prosecution.</p>
+        
+        <div class="agencies">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Seal_of_the_United_States_Department_of_Justice.svg" alt="DOJ" class="agency-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Seal_of_the_United_States_Department_of_Homeland_Security.svg" alt="DHS" class="agency-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Seal_of_the_United_States_Department_of_Defense.svg" alt="DOD" class="agency-logo">
+        </div>
+        
+        <div class="footer">
+            <p>For more information, contact the FBI's Cyber Crime Division at (202) 324-3000.</p>
+            <p>Case Number: 2024-XXXXXX</p>
+            <p>Seized on: <span id="date"></span></p>
+        </div>
+    </div>
 
-  <audio id="background-music" loop>
-    <source src="lol.mp4" type="audio/mp4">
-    Your browser does not support the audio element.
-  </audio>
-
-  <div class="animated-bg" id="particles"></div>
-  <div class="glow"></div>
-
-  <div class="top-right-icons">
-    <a href="https://www.tiktok.com/@lenzy.gov" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-    <a href="mailto:doxbin@lenzy.rest" title="Email"><i class="fas fa-envelope"></i></a>
-  </div>
-
-  <img src="https://i.ibb.co/VYCTT40F/91a8112fde75193abfc769d4a9c047ba.jpg" alt="Lenzy Profile" />
-  <h1>Lenzy</h1>
-  <h2>Contact For</h2>
-  <p>Bot Hosting | Bio Site | Botnet<br>doxbin@lenzy.rest</p>
-
-  <div class="social">
-    <a href="https://instagram.com/lenzy.dll" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@lenzy.gov" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.youtube.com/@Impossible-m4z/videos" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://discord.gg/input" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-  </div>
-
-  <div class="footer">
-    &copy; 2025 Lenzy. All rights reserved.
-  </div>
-
-  <script>
-    const cursor = document.querySelector('.cursor');
-    let lastDropTime = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      
-      const now = Date.now();
-      if (now - lastDropTime > 100) { 
-        lastDropTime = now;
-        if (Math.random() > 0.7) { 
-          createBloodDrop(e.clientX, e.clientY);
-        }
-      }
-    });
-    
-    function createBloodDrop(x, y) {
-      const drop = document.createElement('div');
-      drop.classList.add('blood-drop');
-      drop.style.left = (x + Math.random() * 10 - 5) + 'px';
-      drop.style.top = (y + Math.random() * 10 - 5) + 'px';
-      drop.style.width = (Math.random() * 4 + 2) + 'px';
-      drop.style.height = drop.style.width;
-      drop.style.opacity = '0.8';
-      document.body.appendChild(drop);
-      
-      const angle = Math.random() * Math.PI * 2;
-      const distance = Math.random() * 10 + 5;
-      const targetX = x + Math.cos(angle) * distance;
-      const targetY = y + Math.sin(angle) * distance;
-      
-      const animation = drop.animate([
-        { opacity: 0.8, transform: 'translate(0, 0)' },
-        { opacity: 0, transform: `translate(${targetX - x}px, ${targetY - y}px)` }
-      ], {
-        duration: 500 + Math.random() * 1000,
-        easing: 'cubic-bezier(0.4, 0, 0.6, 1)'
-      });
-      
-      animation.onfinish = () => drop.remove();
-    }
-    
-    const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.top = Math.random() * 100 + 'vh';
-      particle.style.width = (Math.random() * 3 + 1) + 'px';
-      particle.style.height = particle.style.width;
-      particle.style.animationDelay = (Math.random() * 15) + 's';
-      particle.style.animationDuration = (10 + Math.random() * 20) + 's';
-      particlesContainer.appendChild(particle);
-    }
-    
-    const headings = document.querySelectorAll('h1, h2, p');
-    headings.forEach((heading, index) => {
-      heading.style.opacity = '0';
-      heading.style.transform = 'translateY(20px)';
-      heading.style.transition = `all 0.6s ease ${index * 0.1 + 0.3}s`;
-    });
-
-    document.querySelector('.top-right-icons').style.display = 'none';
-    document.querySelector('img').style.display = 'none';
-    document.querySelector('h1').style.display = 'none';
-    document.querySelector('h2').style.display = 'none';
-    document.querySelector('p').style.display = 'none';
-    document.querySelector('.social').style.display = 'none';
-    document.querySelector('.footer').style.display = 'none';
-
-    document.getElementById('continue-btn').addEventListener('click', function() {
-      document.getElementById('preloader').style.opacity = '0';
-      setTimeout(() => {
-        document.getElementById('preloader').style.display = 'none';
-      }, 500);
-      
-      document.querySelector('.top-right-icons').style.display = 'flex';
-      document.querySelector('img').style.display = 'block';
-      document.querySelector('h1').style.display = 'block';
-      document.querySelector('h2').style.display = 'block';
-      document.querySelector('p').style.display = 'block';
-      document.querySelector('.social').style.display = 'flex';
-      document.querySelector('.footer').style.display = 'block';
-      
-      setTimeout(() => {
-        headings.forEach((heading) => {
-          heading.style.opacity = '1';
-          heading.style.transform = 'translateY(0)';
+    <script>
+        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         });
-      }, 100);
-      
-      const audio = document.getElementById('background-music');
-      audio.volume = 1.0;
-      audio.play().catch(e => console.log("Auto-play was prevented:", e));
-    });
-    
-    const interactiveElements = document.querySelectorAll('a, button, #continue-btn');
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
