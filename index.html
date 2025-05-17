@@ -3,88 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THIS SITE HAS BEEN SEIZED</title>
+    <title>Lenzy</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background-color: #333333;
+            color: white;
             margin: 0;
             padding: 0;
             text-align: center;
+            line-height: 1.6;
         }
-        .header {
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-bottom: 5px solid #d40000;
-        }
-        .logo {
-            height: 100px;
-            margin-bottom: 20px;
-        }
-        .seal {
-            height: 150px;
-            margin: 20px 0;
-        }
-        .content {
-            padding: 20px;
+        
+        .container {
             max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
         }
-        .warning {
-            color: #d40000;
-            font-weight: bold;
-            font-size: 24px;
-            margin: 20px 0;
-        }
-        .footer {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #777;
-        }
-        .agencies {
+        
+        .profile-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #800080; /* Purple background */
+            margin: 40px auto 20px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            overflow: hidden;
+            border: 5px solid #800080;
+        }
+        
+        .profile-circle img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            color: white;
+        }
+        
+        .description {
+            font-size: 1.2rem;
             margin: 30px 0;
         }
-        .agency-logo {
-            height: 60px;
-            opacity: 0.8;
+        
+        .purple-text {
+            color: #b19cd9; /* Light purple */
+            font-weight: bold;
+        }
+        
+        .divider {
+            width: 80%;
+            height: 2px;
+            background-color: #555;
+            margin: 40px auto;
+        }
+        
+        .social-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+        
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/FBI_logo.svg" alt="FBI Logo" class="logo">
-    </div>
-    <div class="content">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Seal_of_the_United_States_Federal_Bureau_of_Investigation.svg" alt="FBI Seal" class="seal">
-        <div class="warning">THIS SITE HAS BEEN SEIZED</div>
-        <p>This website has been seized by the Federal Bureau of Investigation in accordance with a seizure warrant obtained by the United States Attorney's Office for the District of Columbia and issued pursuant to 18 U.S.C. §§ 981 and 982.</p>
-        <p>This site was involved in illegal activities in violation of federal laws, including but not limited to: fraud, identity theft, and cybercrime.</p>
-        <p>Individuals accessing this site are subject to monitoring and criminal prosecution.</p>
-        
-        <div class="agencies">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Seal_of_the_United_States_Department_of_Justice.svg" alt="DOJ" class="agency-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Seal_of_the_United_States_Department_of_Homeland_Security.svg" alt="DHS" class="agency-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Seal_of_the_United_States_Department_of_Defense.svg" alt="DOD" class="agency-logo">
+    <div class="container">
+        <div class="profile-circle">
+            <img src="photo.png" alt="Profile Photo">
         </div>
         
-        <div class="footer">
-            <p>For more information, contact the FBI's Cyber Crime Division at (202) 324-3000.</p>
-            <p>Case Number: 2024-XXXXXX</p>
-            <p>Seized on: <span id="date"></span></p>
+        <h1>Lenzy</h1>
+        
+        <div class="description">
+            Hi im Lenzy Im 15 Years Old <span class="purple-text">I Have Worked On Many Projects</span> in as <span class="purple-text">Discord Tools , Botnets , Websites , Bots </span>. Contact Me In Links Below
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="social-section">
+            <h2>All my socials</h2>
+            <div class="social-links">
+                <a href="https://discord.com" class="social-link" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/906/906361.png" alt="Discord" class="social-icon">
+                    Discord
+                </a>
+                <a href="https://instagram.com" class="social-link" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon">
+                    Instagram
+                </a>
+                <a href="https://tiktok.com" class="social-link" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon">
+                    TikTok
+                </a>
+                <a href="https://youtube.com" class="social-link" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="social-icon">
+                    YouTube
+                </a>
+            </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    </script>
 </body>
 </html>
