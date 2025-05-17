@@ -32,8 +32,15 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .music-toggle:hover {
+            background: rgba(255,255,255,0.1);
         }
         
         .music-icon {
@@ -52,6 +59,7 @@
             justify-content: center;
             overflow: hidden;
             border: 5px solid #800080;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         
         .profile-circle img {
@@ -64,11 +72,15 @@
             font-size: 2.5rem;
             margin: 20px 0;
             color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         .description {
             font-size: 1.2rem;
             margin: 30px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .purple-text {
@@ -78,8 +90,8 @@
         
         .divider {
             width: 80%;
-            height: 2px;
-            background-color: #555;
+            height: 1px;
+            background-color: #444;
             margin: 40px auto;
         }
         
@@ -91,7 +103,7 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
         }
         
@@ -100,12 +112,21 @@
             align-items: center;
             color: white;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .social-link:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
         }
         
         .social-icon {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             margin-right: 10px;
         }
         
@@ -117,7 +138,9 @@
 <body>
     <div class="container">
         <button class="music-toggle" id="musicButton">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNiAyMlY0bC02IDItNi0ydjE2bDYtMiA2IDJ6Ii8+PC9zdmc+" alt="Music" class="music-icon">
+            <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
+            </svg>
             Mute
         </button>
         
@@ -142,19 +165,28 @@
             <h2>All my socials</h2>
             <div class="social-links">
                 <a href="https://discord.com" class="social-link" target="_blank">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xOS41NCAwYy0xLjA3IDAtMi4wNi4yOC0yLjk0LjgxQzE1LjM0LjM0IDE0LjE3IDAgMTIuOTQgMGMtMS4yMyAwLTIuNC4zNC0zLjY2LjgxQzguNTIuMjggNy41MyAwIDYuNDYgMEM0LjE0IDAgMi4xMSAxLjA3Ljg1IDIuNjljLTEuMjcgMS42LTEuNjYgMy42OC0xLjUgNS44NEMtLjY3IDEwLjg5LS4wNiAxMy4xNiAxLjEgMTUuMTFjLjUuNzUgMS4wNiAxLjQ0IDEuNyAyLjAzIDEuMDQgMS4xMSAyLjEgMS45OSAzLjM1IDIuNDguNTYuMjMgMS4xLjQ0IDEuNjYuNDQuNTYgMCAxLjEtLjIxIDEuNjYtLjQ0IDEuMjUtLjQ5IDIuMzEtMS4zNyAzLjM1LTIuNDguNjQtLjU5IDEuMi0xLjI4IDEuNy0yLjAzIDEuMTYtMS45NSAxLjc3LTQuMjIgMS43NS02LjU2LjE2LTIuMTYtLjIzLTQuMjQtMS41LTUuODRDMjEuODkgMS4wNyAxOS44NiAwIDE3LjU0IDB6TTguMDIgMTIuMzNjLS42NiAwLTEuMi0uNTktMS4yLTEuMzIgMC0uNzMuNTQtMS4zMyAxLjItMS4zMy42NiAwIDEuMi42IDEuMiAxLjMzIDAgLjczLS41NCAxLjMyLTEuMiAxLjMyem03LjU2IDBjLS42NiAwLTEuMi0uNTktMS4yLTEuMzIgMC0uNzMuNTQtMS4zMyAxLjItMS4zMy42NiAwIDEuMi42IDEuMiAxLjMzIDAgLjczLS41NCAxLjMyLTEuMiAxLjMyeiIvPjwvc3ZnPg==" alt="Discord" class="social-icon">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4V4.03C15 4.03 14.5 3.05 13 2C11.5 3.05 11 4.03 11 4.03C9.5 4.26 8.06 4.71 6.73 5.33C3.04 7.51 1 11.02 1 14.83C1 14.83 2.5 15.8 6 16.5C6.5 16.5 6.8 16.16 6.8 16.16C6.8 16.16 6.9 15.9 7.1 15.6C5.5 15.1 4.7 14.4 4.7 14.4C7.1 15.5 9.5 15.9 12 15.9C14.5 15.9 16.9 15.5 19.3 14.4C19.3 14.4 18.5 15.1 16.9 15.6C17.1 15.9 17.2 16.16 17.2 16.16C17.2 16.16 17.5 16.5 18 16.5C21.5 15.8 23 14.83 23 14.83C23 11.02 20.96 7.51 19.27 5.33ZM9 13.5C8 13.5 7.2 12.7 7.2 11.7C7.2 10.7 8 10 9 10C10 10 10.8 10.8 10.8 11.7C10.8 12.7 10 13.5 9 13.5ZM15 13.5C14 13.5 13.2 12.7 13.2 11.7C13.2 10.7 14 10 15 10C16 10 16.8 10.8 16.8 11.7C16.8 12.7 16 13.5 15 13.5Z" fill="white"/>
+                    </svg>
                     Discord
                 </a>
                 <a href="https://instagram.com" class="social-link" target="_blank">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiA2LjA0YzMuMzIgMCAzLjY0LjAxIDQuOTEuMDcgMS4xOC4wNSAxLjgyLjIyIDIuMjYuNDEuNTcuMjQuOTYuNTQgMS4zOC45Ny40Mi40My43My44Mi45NyAxLjM4LjE5LjQ0LjM2IDEuMDguNDEgMi4yNi4wNiAxLjI3LjA3IDEuNTkuMDcgNC45MSAwIDMuMzItLjAxIDMuNjQtLjA3IDQuOTEtLjA1IDEuMTgtLjIyIDEuODItLjQxIDIuMjYtLjI0LjU3LS41NC45Ni0uOTcgMS4zOC0uNDMuNDItLjgyLjczLTEuMzguOTctLjQ0LjE5LTEuMDguMzYtMi4yNi40MS0xLjI3LjA2LTEuNTkuMDctNC45MS4wNy0zLjMyIDAtMy42NC0uMDEtNC45MS0uMDctMS4xOC0uMDUtMS44Mi0uMjItMi4yNi0uNDEtLjU3LS4yNC0uOTYtLjU0LTEuMzgtLjk3LS40Mi0uNDMtLjczLS44Mi0uOTctMS4zOC0uMTktLjQ0LS4zNi0xLjA4LS40MS0yLjI2LS4wNi0xLjI3LS4wNy0xLjU5LS4wNy00LjkxIDAtMy4zMi4wMS0zLjY0LjA3LTQuOTEuMDUtMS4xOC4yMi0xLjgyLjQxLTIuMjYuMjQtLjU3LjU0LS45Ni45Ny0xLjM4LjQzLS40Mi44Mi0uNzMgMS4zOC0uOTcuNDQtLjE5IDEuMDgtLjM2IDIuMjYtLjQxIDEuMjctLjA2IDEuNTktLjA3IDQuOTEtLjA3em0wLTIuMDVjLTMuMzkgMC0zLjc2LjAxLTUuMDQuMDctMS41OC4wNy0yLjQzLjM0LTMuMjkuNzMtLjg5LjQtMS42MS45NS0yLjMgMS42NC0uNjkuNjktMS4yNCAxLjQxLTEuNjQgMi4zLS4zOS44Ni0uNjYgMS43MS0uNzMgMy4yOS0uMDYgMS4yOC0uMDcgMS42NS0uMDcgNS4wNCAwIDMuMzkuMDEgMy43Ni4wNyA1LjA0LjA3IDEuNTguMzQgMi40My43MyAzLjI5LjQuODkuOTUgMS42MSAxLjY0IDIuMy42OS42OSAxLjQxIDEuMjQgMi4zIDEuNjQuODYuMzkgMS43MS42NiAzLjI5LjczIDEuMjguMDYgMS42NS4wNyA1LjA0LjA3IDMuMzkgMCAzLjc2LS4wMSA1LjA0LS4wNyAxLjU4LS4wNyAyLjQzLS4zNCAzLjI5LS43My44OS0uNCAxLjYxLS45NSAyLjMtMS42NC42OS0uNjkgMS4yNC0xLjQxIDEuNjQtMi4zLjM5LS44Ni42Ni0xLjcxLjczLTMuMjkuMDYtMS4yOC4wNy0xLjY1LjA3LTUuMDQgMC0zLjM5LS4wMS0zLjc2LS4wNy01LjA0LS4wNy0xLjU4LS4zNC0yLjQzLS43My0zLjI5LS40LS44OS0uOTUtMS42MS0xLjY0LTIuMy0uNjktLjY5LTEuNDEtMS4yNC0yLjMtMS42NC0uODYtLjM5LTEuNzEtLjY2LTMuMjktLjczLTEuMjgtLjA2LTEuNjUtLjA3LTUuMDQtLjA3em0wIDUuNTFjLTIuNTcgMC00LjY1IDIuMDktNC42NSA0LjY1IDAgMi41NyAyLjA4IDQuNjUgNC42NSA0LjY1IDIuNTcgMCA0LjY1LTIuMDggNC42NS00LjY1IDAtMi41Ni0yLjA4LTQuNjUtNC42NS00LjY1em0wIDcuNjZjLTEuNjYgMC0zLTEuMzQtMy0zIDAtMS42NiAxLjM0LTMgMy0zIDEuNjYgMCAzIDEuMzQgMyAzIDAgMS42Ni0xLjM0IDMtMyAzem03LjczLTguNjZjMC0uNTUtLjQ1LTEtMS0xcy0xIC40NS0xIDEgLjQ1IDEgMSAxIDEtLjQ1IDEtMXoiLz48L3N2Zz4=" alt="Instagram" class="social-icon">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C14.2 2 14.6 2 15.8 2.1C17 2.2 17.7 2.4 18.2 2.6C18.8 2.8 19.3 3.1 19.8 3.6C20.3 4.1 20.6 4.6 20.8 5.2C21 5.7 21.2 6.4 21.3 7.6C21.4 8.8 21.5 9.2 21.5 11.5C21.5 13.8 21.4 14.2 21.3 15.4C21.2 16.6 21 17.3 20.8 17.8C20.6 18.4 20.3 18.9 19.8 19.4C19.3 19.9 18.8 20.2 18.2 20.4C17.7 20.6 17 20.8 15.8 20.9C14.6 21 14.2 21 12 21C9.8 21 9.4 21 8.2 20.9C7 20.8 6.3 20.6 5.8 20.4C5.2 20.2 4.7 19.9 4.2 19.4C3.7 18.9 3.4 18.4 3.2 17.8C3 17.3 2.8 16.6 2.7 15.4C2.6 14.2 2.5 13.8 2.5 11.5C2.5 9.2 2.6 8.8 2.7 7.6C2.8 6.4 3 5.7 3.2 5.2C3.4 4.6 3.7 4.1 4.2 3.6C4.7 3.1 5.2 2.8 5.8 2.6C6.3 2.4 7 2.2 8.2 2.1C9.4 2 9.8 2 12 2ZM12 4C9.9 4 9.5 4 8.4 4.1C7.3 4.2 6.8 4.4 6.4 4.5C5.9 4.7 5.6 4.9 5.3 5.2C5 5.5 4.8 5.8 4.6 6.3C4.4 6.7 4.2 7.2 4.1 8.3C4 9.4 4 9.8 4 12C4 14.2 4 14.6 4.1 15.7C4.2 16.8 4.4 17.3 4.6 17.7C4.8 18.2 5 18.5 5.3 18.8C5.6 19.1 5.9 19.3 6.4 19.5C6.8 19.7 7.3 19.9 8.4 20C9.5 20.1 9.9 20.1 12 20.1C14.1 20.1 14.5 20.1 15.6 20C16.7 19.9 17.2 19.7 17.6 19.5C18.1 19.3 18.4 19.1 18.7 18.8C19 18.5 19.2 18.2 19.4 17.7C19.6 17.3 19.8 16.8 19.9 15.7C20 14.6 20 14.2 20 12C20 9.8 20 9.4 19.9 8.3C19.8 7.2 19.6 6.7 19.4 6.3C19.2 5.8 19 5.5 18.7 5.2C18.4 4.9 18.1 4.7 17.6 4.5C17.2 4.4 16.7 4.2 15.6 4.1C14.5 4 14.1 4 12 4ZM12 7C14.5 7 16.5 9 16.5 11.5C16.5 14 14.5 16 12 16C9.5 16 7.5 14 7.5 11.5C7.5 9 9.5 7 12 7ZM12 9C10.6 9 9.5 10.1 9.5 11.5C9.5 12.9 10.6 14 12 14C13.4 14 14.5 12.9 14.5 11.5C14.5 10.1 13.4 9 12 9ZM17 6.5C17 7.1 16.6 7.5 16 7.5C15.4 7.5 15 7.1 15 6.5C15 5.9 15.4 5.5 16 5.5C16.6 5.5 17 5.9 17 6.5Z" fill="white"/>
+                    </svg>
                     Instagram
                 </a>
                 <a href="https://tiktok.com" class="social-link" target="_blank">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNi42IDguMDFzLTIuMTUtLjEtMi4xNS0yLjE1VjBoMy4yM3YyLjQxYzEuMTYuNDEgMS45NSAxLjU0IDIuODMgMi4zMWguMDF2My4yOWgtNC4wNnYxMC4xOGMwIDQuNDUtNS4yIDQuNDUtNS4yIDBWNy43MWgtMy4yM3YxMy4xMmMwIDYuMDQgNy44MyA2LjA0IDcuODMgMHYtMTIuODJ6Ii8+PC9zdmc+" alt="TikTok" class="social-icon">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.5 0H9V16.5C9 18.4 7.4 20 5.5 20C3.6 20 2 18.4 2 16.5C2 14.6 3.6 13 5.5 13C6 13 6.5 13.1 7 13.3V9.7C6.4 9.5 5.8 9.4 5.2 9.4C2.4 9.4 0 11.8 0 14.6C0 17.4 2.4 19.8 5.2 19.8H5.3C8.1 19.8 10.5 17.4 10.5 14.6V6.1C11.6 7 13 7.5 14.5 7.5V4C13.2 4 12 3.5 11.1 2.6C10.2 1.7 9.7 0.5 9.7 0H12.5V0Z" fill="white"/>
+                        <path d="M19 4H15.5V16.5C15.5 17.6 14.6 18.5 13.5 18.5C12.4 18.5 11.5 17.6 11.5 16.5C11.5 15.4 12.4 14.5 13.5 14.5C13.8 14.5 14.1 14.6 14.4 14.7V11.1C14.1 11 13.8 11 13.5 11C10.7 11 8.5 13.2 8.5 16C8.5 18.8 10.7 21 13.5 21C16.3 21 18.5 18.8 18.5 16V8C19.9 9 21.6 9.5 23.3 9.5V6C21.1 6 19 5 19 4Z" fill="white"/>
+                    </svg>
                     TikTok
                 </a>
                 <a href="https://youtube.com" class="social-link" target="_blank">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0yMy40OTggNi4xODVDMjMuMjIgNC44NDEgMjIuMTU2IDMuNzggMjAuODIgMy41MTNDMTguOTQ0IDMuMTIgMTIgMy4xMiAxMiAzLjEycy02Ljk0NCAwLTguODIuMzkzQzEuODQ0IDMuNzguNzgxIDQuODQuNTAyIDYuMTg1Yy0uNDQgMi4yMDQtLjQ0IDYuODE0LS40NCA2LjgxNHMwIDQuNjEuNDQgNi44MTRjLjI3OCAxLjM0NSAxLjM0MiAyLjQwOCAyLjY4IDIuNjg1IDEuODc3LjM5MyA4LjgyLjM5MyA4LjgyLjM5M3M2Ljk0NCAwIDguODItLjM5M2MxLjM0Mi0uMjc3IDIuNDA4LTEuMzQgMi42OC0yLjY4NS40NC0yLjIwNC40NC02LjgxNC40NC02LjgxNHMwLTQuNjEtLjQ0LTYuODE0em0tMTMuMDIgMTAuMDlsNS4zOTgtMy4wNjQtNS4zOTgtMy4wNjR2Ni4xMjh6Ii8+PC9zdmc+" alt="YouTube" class="social-icon">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.6 7.2C21.4 6.5 20.9 5.9 20.2 5.7C18.8 5.3 12 5.3 12 5.3C12 5.3 5.2 5.3 3.8 5.7C3.1 5.9 2.6 6.5 2.4 7.2C2 8.6 2 12 2 12C2 12 2 15.4 2.4 16.8C2.6 17.5 3.1 18.1 3.8 18.3C5.2 18.7 12 18.7 12 18.7C12 18.7 18.8 18.7 20.2 18.3C20.9 18.1 21.4 17.5 21.6 16.8C22 15.4 22 12 22 12C22 12 22 8.6 21.6 7.2ZM9.7 15.1V8.9L15.4 12L9.7 15.1Z" fill="white"/>
+                    </svg>
                     YouTube
                 </a>
             </div>
@@ -166,17 +198,31 @@
         const audioPlayer = document.getElementById('audioPlayer');
         let isPlaying = false;
         
+        // Start with music muted by default
+        audioPlayer.volume = 0;
+        musicButton.innerHTML = `
+            <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
+            </svg>
+            Mute
+        `;
+        
         musicButton.addEventListener('click', function() {
             if (isPlaying) {
-                audioPlayer.pause();
+                audioPlayer.volume = 0;
                 musicButton.innerHTML = `
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNiAyMlY0bC02IDItNi0ydjE2bDYtMiA2IDJ6Ii8+PC9zdmc+" alt="Music" class="music-icon">
+                    <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
+                    </svg>
                     Mute
                 `;
             } else {
+                audioPlayer.volume = 0.5;
                 audioPlayer.play();
                 musicButton.innerHTML = `
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xOCA2VjRoLTJ2MmgtMnYyaDJ2MmgyVjhoMlY2aC0yWk04IDE2Yy0yLjIxIDAtNC0xLjc5LTQtNHMxLjc5LTQgNC00YzEuMjEgMCAyLjI3LjU1IDMgMS4zM1Y0aDJ2MTJoLTJ2LTEuMzNDMTAuMjcgMTUuNDUgOS4yMSAxNiA4IDE2Wm0wLTZjLTEuMSAwLTIgLjktMiAyczAuOSAyIDIgMiAyLS45IDItMi0uOS0yLTItMloiLz48L3N2Zz4=" alt="Music" class="music-icon">
+                    <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18 19.86 21 16.28 21 12C21 7.72 18 4.14 14 3.23ZM16.5 12C16.5 10.23 15.5 8.71 14 7.97V16.02C15.5 15.29 16.5 13.77 16.5 12ZM3 9V15H7L12 20V4L7 9H3Z" fill="white"/>
+                    </svg>
                     Music
                 `;
             }
