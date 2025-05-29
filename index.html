@@ -1,31 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <title>Lenzy</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-        <meta name="description" content="Lenzy" />
-        <meta property="og:title" content="Lenzy" />
-        <meta property="og:description" content="Lenzii" />
-        <meta
-            property="og:image"
-            content="https://media.discordapp.net/attachments/1370143462401511436/1374777446909608189/5487923cbcce9dee4cd08b8144a3e506.jpg?ex=682f48c5&is=682df745&hm=1be9bdde7b2b3654587e7fcbc6811b499dab3750cc54fc0a505ac1052df57d08&=&format=webp"
-        />
-        <meta property="og:image:width" content="80" />
-        <meta property="og:image:height" content="80" />
-        <meta property="og:url" content="lenzy.pro" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Dont Click" />
-        <meta name="twitter:description" content="Lenzii" />
-        <meta
-            name="twitter:image"
-            content="https://media.discordapp.net/attachments/1370143462401511436/1374777446909608189/5487923cbcce9dee4cd08b8144a3e506.jpg?ex=682f48c5&is=682df745&hm=1be9bdde7b2b3654587e7fcbc6811b499dab3750cc54fc0a505ac1052df57d08&=&format=webp"
-</div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lenzy</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <meta name="description" content="Lenzy">
+    <meta property="og:title" content="Lenzy">
+    <meta property="og:description" content="Lenzii">
+    <meta property="og:image" content="https://media.discordapp.net/attachments/1370143462401511436/1374777446909608189/5487923cbcce9dee4cd08b8144a3e506.jpg?ex=682f48c5&is=682df745&hm=1be9bdde7b2b3654587e7fcbc6811b499dab3750cc54fc0a505ac1052df57d08&=&format=webp">
+    <meta property="og:image:width" content="80">
+    <meta property="og:image:height" content="80">
+    <meta property="og:url" content="lenzy.pro">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dont Click">
+    <meta name="twitter:description" content="Lenzii">
+    <meta name="twitter:image" content="https://media.discordapp.net/attachments/1370143462401511436/1374777446909608189/5487923cbcce9dee4cd08b8144a3e506.jpg?ex=682f48c5&is=682df745&hm=1be9bdde7b2b3654587e7fcbc6811b499dab3750cc54fc0a505ac1052df57d08&=&format=webp">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -122,6 +113,7 @@
             margin-left: auto;
             margin-right: auto;
             min-height: 80px;
+            text-align: center;
         }
         
         .white-text {
@@ -145,7 +137,7 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 15px;
             flex-wrap: wrap;
             position: relative;
             z-index: 2;
@@ -156,36 +148,47 @@
             align-items: center;
             color: white;
             text-decoration: none;
-            font-size: 1.1rem;
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
             background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.1);
         }
         
         .social-link:hover {
             background: rgba(255,255,255,0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
         }
         
         .social-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
-        }
-        
-        .social-link:hover .social-icon {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
         }
         
         #audioPlayer {
             display: none;
+        }
+
+        .typewriter {
+            border-right: 2px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .typing {
+            animation: blinkCursor 0.7s infinite, typing 3s steps(40) 1s 1 normal both;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blinkCursor {
+            from { border-right-color: white }
+            to { border-right-color: transparent }
         }
     </style>
 </head>
@@ -211,8 +214,8 @@
         
         <h1>Lenzy</h1>
         
-        <div class="description" id="typewriterText">
-            Hi im Lenzy Im 15 Years Old <span class="white-text">I code python</span> and <span class="white-text">Do Projects</span>. As do Discord Tools , Botnets , Websites , Bots
+        <div class="description">
+            <div id="typewriterText"></div>
         </div>
         
         <div class="divider"></div>
@@ -221,25 +224,25 @@
             <h2>Contact Me</h2>
             <div class="social-links">
                 <a href="https://discord.gg/input" class="social-link" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.82 4.26a10.14 10.14 0 0 0-.53 1.1 14.66 14.66 0 0 0-4.58 0 10.14 10.14 0 0 0-.53-1.1 16 16 0 0 0-4.13 1.3 17.33 17.33 0 0 0-3 11.59 16.6 16.6 0 0 0 5.07 2.59A12.89 12.89 0 0 0 8.23 18a9.65 9.65 0 0 1-1.71-.83 3.39 3.39 0 0 0 .42-.33 11.66 11.66 0 0 0 10.12 0q.21.18.42.33a10.84 10.84 0 0 1-1.71.84 12.41 12.41 0 0 0 1.08 1.78 16.44 16.44 0 0 0 5.06-2.59 17.22 17.22 0 0 0-3-11.59 16.09 16.09 0 0 0-4.09-1.35zM8.68 14.81a1.94 1.94 0 0 1-1.8-2 1.93 1.93 0 0 1 1.8-2 1.93 1.93 0 0 1 1.8 2 1.93 1.93 0 0 1-1.8 2zm6.64 0a1.94 1.94 0 0 1-1.8-2 1.93 1.93 0 0 1 1.8-2 1.92 1.92 0 0 1 1.8 2 1.92 1.92 0 0 1-1.8 2z"/>
                     </svg>
                     Discord
                 </a>
                 <a href="https://www.instagram.com/lenzy.dll/" class="social-link" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838c3.403 0 6.162 2.759 6.162 6.162S15.403 18.162 12 18.162 5.838 15.403 5.838 12 8.597 5.838 12 5.838zM12 16c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                     Instagram
                 </a>
                 <a href="https://www.tiktok.com/@lenzy.gov" class="social-link" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
                     </svg>
                     TikTok
                 </a>
                 <a href="https://www.youtube.com/@lenzy-crime" class="social-link" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                     </svg>
                     YouTube
@@ -252,6 +255,27 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const text = "Hi im Lenzy Im 15 Years Old Contact Me Down Below";
+            const typewriterElement = document.getElementById('typewriterText');
+            typewriterElement.classList.add('typewriter', 'typing');
+            
+            let i = 0;
+            const speed = 50;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    typewriterElement.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    setTimeout(() => {
+                        typewriterElement.classList.remove('typing');
+                    }, 1000);
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
+            
             particlesJS('particles-js', {
                 "particles": {
                     "number": {
@@ -357,42 +381,40 @@
                 },
                 "retina_detect": true
             });
-        });
 
-        // Music player functionality
-        const musicButton = document.getElementById('musicButton');
-        const audioPlayer = document.getElementById('audioPlayer');
-        let isPlaying = false;
-        
-        // Start with music muted by default
-        audioPlayer.volume = 0;
-        musicButton.innerHTML = `
-            <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
-            </svg>
-            Mute
-        `;
-        
-        musicButton.addEventListener('click', function() {
-            if (isPlaying) {
-                audioPlayer.volume = 0;
-                musicButton.innerHTML = `
-                    <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
-                    </svg>
-                    Mute
-                `;
-            } else {
-                audioPlayer.volume = 0.5;
-                audioPlayer.play();
-                musicButton.innerHTML = `
-                    <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18 19.86 21 16.28 21 12C21 7.72 18 4.14 14 3.23ZM16.5 12C16.5 10.23 15.5 8.71 14 7.97V16.02C15.5 15.29 16.5 13.77 16.5 12ZM3 9V15H7L12 20V4L7 9H3Z" fill="white"/>
-                    </svg>
-                    Music
-                `;
-            }
-            isPlaying = !isPlaying;
+            const musicButton = document.getElementById('musicButton');
+            const audioPlayer = document.getElementById('audioPlayer');
+            let isPlaying = false;
+            
+            audioPlayer.volume = 0;
+            musicButton.innerHTML = `
+                <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
+                </svg>
+                Mute
+            `;
+            
+            musicButton.addEventListener('click', function() {
+                if (isPlaying) {
+                    audioPlayer.volume = 0;
+                    musicButton.innerHTML = `
+                        <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
+                        </svg>
+                        Mute
+                    `;
+                } else {
+                    audioPlayer.volume = 0.5;
+                    audioPlayer.play();
+                    musicButton.innerHTML = `
+                        <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18 19.86 21 16.28 21 12C21 7.72 18 4.14 14 3.23ZM16.5 12C16.5 10.23 15.5 8.71 14 7.97V16.02C15.5 15.29 16.5 13.77 16.5 12ZM3 9V15H7L12 20V4L7 9H3Z" fill="white"/>
+                        </svg>
+                        Music
+                    `;
+                }
+                isPlaying = !isPlaying;
+            });
         });
     </script>
 </body>
