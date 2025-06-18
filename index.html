@@ -1,421 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenzy</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-    <meta name="description" content="Lenzy">
-    <meta property="og:title" content="Lenzy">
-    <meta property="og:description" content="Lenzii">
-    <meta property="og:image" content="https://media.discordapp.net/attachments/1370143462401511436/1374777446909608189/5487923cbcce9dee4cd08b8144a3e506.jpg?ex=682f48c5&is=682df745&hm=1be9bdde7b2b3654587e7fcbc6811b499dab3750cc54fc0a505ac1052df57d08&=&format=webp">
-    <meta property="og:image:width" content="80">
-    <meta property="og:image:height" content="80">
-    <meta property="og:url" content="lenzy.pro">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Dont Click">
-    <meta name="twitter:description" content="Lenzii">
-    <meta name="twitter:image" content="https://media.discordapp.net/attachments/1370143462401511436/1374777446909608189/5487923cbcce9dee4cd08b8144a3e506.jpg?ex=682f48c5&is=682df745&hm=1be9bdde7b2b3654587e7fcbc6811b499dab3750cc54fc0a505ac1052df57d08&=&format=webp">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000000;
-            color: white;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            line-height: 1.6;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .music-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-            padding: 8px 12px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .music-toggle:hover {
-            background: rgba(255,255,255,0.1);
-        }
-        
-        .music-icon {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .profile-circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 40px auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 3px solid transparent;
-            box-shadow: 0 0 20px rgba(255,255,255,0.8);
-            transition: all 0.3s ease;
-        }
-        
-        .profile-circle:hover {
-            box-shadow: 0 0 30px rgba(255,255,255,1);
-        }
-        
-        .profile-circle img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin: 20px 0;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .description {
-            font-size: 1.2rem;
-            margin: 30px 0;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            min-height: 80px;
-            text-align: center;
-        }
-        
-        .white-text {
-            color: #ffffff;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255,255,255,0.7);
-        }
-        
-        .divider {
-            width: 80%;
-            height: 1px;
-            background-color: #444;
-            margin: 40px auto;
-        }
-        
-        .social-section h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: all 0.2s ease;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .social-link:hover {
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .social-icon {
-            width: 18px;
-            height: 18px;
-            margin-right: 8px;
-        }
-        
-        #audioPlayer {
-            display: none;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lenzy</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-size: 2rem;
+      text-align: center;
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+    
+    .video-container {
+      width: 80%;
+      max-width: 800px;
+      border: 1px solid #333;
+    }
+    
+    video {
+      width: 100%;
+      display: block;
+    }
 
-        .typewriter {
-            border-right: 2px solid white;
-            white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
-        }
+    .info {
+      margin-top: 40px;
+      font-size: 1rem;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 90vw;
+      white-space: pre-wrap;
+      text-align: center;
+    }
 
-        .typing {
-            animation: blinkCursor 0.7s infinite, typing 3s steps(40) 1s 1 normal both;
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
+    .lenzi-text {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      animation: glow 2s infinite alternate;
+      z-index: 1000;
+    }
 
-        @keyframes blinkCursor {
-            from { border-right-color: white }
-            to { border-right-color: transparent }
-        }
-    </style>
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
+      }
+    }
+
+    .close-warning {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    
-    <div class="container">
-        <button class="music-toggle" id="musicButton">
-            <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
-            </svg>
-            Mute
-        </button>
-        
-        <audio id="audioPlayer" loop>
-            <source src="song.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        
-        <div class="profile-circle">
-            <img src="photo.png" alt="Profile Photo">
-        </div>
-        
-        <h1>Lenzy</h1>
-        
-        <div class="description">
-            <div id="typewriterText"></div>
-        </div>
-        
-        <div class="divider"></div>
-        
-        <div class="social-section">
-            <h2>Contact Me</h2>
-            <div class="social-links">
-                <a href="https://discord.gg/input" class="social-link" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.82 4.26a10.14 10.14 0 0 0-.53 1.1 14.66 14.66 0 0 0-4.58 0 10.14 10.14 0 0 0-.53-1.1 16 16 0 0 0-4.13 1.3 17.33 17.33 0 0 0-3 11.59 16.6 16.6 0 0 0 5.07 2.59A12.89 12.89 0 0 0 8.23 18a9.65 9.65 0 0 1-1.71-.83 3.39 3.39 0 0 0 .42-.33 11.66 11.66 0 0 0 10.12 0q.21.18.42.33a10.84 10.84 0 0 1-1.71.84 12.41 12.41 0 0 0 1.08 1.78 16.44 16.44 0 0 0 5.06-2.59 17.22 17.22 0 0 0-3-11.59 16.09 16.09 0 0 0-4.09-1.35zM8.68 14.81a1.94 1.94 0 0 1-1.8-2 1.93 1.93 0 0 1 1.8-2 1.93 1.93 0 0 1 1.8 2 1.93 1.93 0 0 1-1.8 2zm6.64 0a1.94 1.94 0 0 1-1.8-2 1.93 1.93 0 0 1 1.8-2 1.92 1.92 0 0 1 1.8 2 1.92 1.92 0 0 1-1.8 2z"/>
-                    </svg>
-                    Discord
-                </a>
-                <a href="https://www.instagram.com/lenzy.dll/" class="social-link" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838c3.403 0 6.162 2.759 6.162 6.162S15.403 18.162 12 18.162 5.838 15.403 5.838 12 8.597 5.838 12 5.838zM12 16c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                    Instagram
-                </a>
-                <a href="https://www.tiktok.com/@lenzy.gov" class="social-link" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                    </svg>
-                    TikTok
-                </a>
-                <a href="https://www.youtube.com/@lenzy-crime" class="social-link" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    YouTube
-                </a>
-            </div>
-        </div>
-    </div>
+  <div class="lenzi-text" id="lenziLink">Lenzy</div>
+  
+  <div class="close-warning" id="closeWarning">
+    Developer tools have been disabled. Please close this tab to continue lol
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const text = "Hi im Lenzy Im 15 Years Old Contact Me Down Below";
-            const typewriterElement = document.getElementById('typewriterText');
-            typewriterElement.classList.add('typewriter', 'typing');
-            
-            let i = 0;
-            const speed = 50;
-            
-            function typeWriter() {
-                if (i < text.length) {
-                    typewriterElement.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, speed);
-                } else {
-                    setTimeout(() => {
-                        typewriterElement.classList.remove('typing');
-                    }, 1000);
-                }
-            }
-            
-            setTimeout(typeWriter, 1000);
-            
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#ffffff"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false,
-                        "anim": {
-                            "enable": false,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 40,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#ffffff",
-                        "opacity": 0.4,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": false,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
+  <div class="video-container">
+    <video controls>
+      <source src="lithe.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
-            const musicButton = document.getElementById('musicButton');
-            const audioPlayer = document.getElementById('audioPlayer');
-            let isPlaying = false;
-            
-            audioPlayer.volume = 0;
-            musicButton.innerHTML = `
-                <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
-                </svg>
-                Mute
-            `;
-            
-            musicButton.addEventListener('click', function() {
-                if (isPlaying) {
-                    audioPlayer.volume = 0;
-                    musicButton.innerHTML = `
-                        <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 17V7H7V17H3ZM10 5V19H14V5H10ZM17 9V15H21V9H17Z" fill="white"/>
-                        </svg>
-                        Mute
-                    `;
-                } else {
-                    audioPlayer.volume = 0.5;
-                    audioPlayer.play();
-                    musicButton.innerHTML = `
-                        <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18 19.86 21 16.28 21 12C21 7.72 18 4.14 14 3.23ZM16.5 12C16.5 10.23 15.5 8.71 14 7.97V16.02C15.5 15.29 16.5 13.77 16.5 12ZM3 9V15H7L12 20V4L7 9H3Z" fill="white"/>
-                        </svg>
-                        Music
-                    `;
-                }
-                isPlaying = !isPlaying;
-            });
+  <div class="info" id="infoBox">
+Loading information
+  </div>
+
+  <script>
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || 
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+          (e.ctrlKey && e.key === 'u')) {
+        e.preventDefault();
+        showCloseWarning();
+      }
+    });
+
+    let devToolsOpened = false;
+    const devToolsCheck = () => {
+      const widthThreshold = window.outerWidth - window.innerWidth > 160;
+      const heightThreshold = window.outerHeight - window.innerHeight > 160;
+      if ((widthThreshold || heightThreshold) && !devToolsOpened) {
+        devToolsOpened = true;
+        showCloseWarning();
+      }
+    };
+    setInterval(devToolsCheck, 1000);
+
+    function showCloseWarning() {
+      document.getElementById('closeWarning').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('lenziLink').addEventListener('click', function() {
+      window.location.href = 'https://lenzy.pro'; 
+    });
+
+    const lenziElement = document.getElementById('lenziLink');
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    lenziElement.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      offsetX = e.clientX - lenziElement.getBoundingClientRect().left;
+      offsetY = e.clientY - lenziElement.getBoundingClientRect().top;
+      lenziElement.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (isDragging) {
+        lenziElement.style.left = (e.clientX - offsetX) + 'px';
+        lenziElement.style.top = (e.clientY - offsetY) + 'px';
+      }
+    });
+
+    document.addEventListener('mouseup', function() {
+      isDragging = false;
+      lenziElement.style.cursor = 'pointer';
+    });
+
+    lenziElement.addEventListener('touchstart', function(e) {
+      isDragging = true;
+      const touch = e.touches[0];
+      offsetX = touch.clientX - lenziElement.getBoundingClientRect().left;
+      offsetY = touch.clientY - lenziElement.getBoundingClientRect().top;
+      e.preventDefault();
+    });
+
+    document.addEventListener('touchmove', function(e) {
+      if (isDragging) {
+        const touch = e.touches[0];
+        lenziElement.style.left = (touch.clientX - offsetX) + 'px';
+        lenziElement.style.top = (touch.clientY - offsetY) + 'px';
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchend', function() {
+      isDragging = false;
+    });
+
+    function typeWriter(text, elementId, speed = 50) {
+      let i = 0;
+      const element = document.getElementById(elementId);
+      element.innerHTML = '';
+      function type() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
+    }
+
+    function displayInfo() {
+      const userAgent = navigator.userAgent;
+      const language = navigator.language;
+      const platform = navigator.platform;
+      const screenSize = `${window.screen.width}x${window.screen.height}`;
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const hardwareConcurrency = navigator.hardwareConcurrency || 'Unknown';
+      const deviceMemory = navigator.deviceMemory || 'Unknown';
+      const historyLength = history.length;
+
+      fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => {
+          const fullText = 
+`IP Address: ${data.ip}
+Browser: ${userAgent}
+Language: ${language}
+Platform: ${platform}
+Resolution: ${screenSize}
+Timezone: ${timezone}
+CPU Cores: ${hardwareConcurrency}
+RAM (est.): ${deviceMemory} GB
+History Length: ${historyLength}`;
+
+          typeWriter(fullText, 'infoBox', 35);
+        })
+        .catch(() => {
+          typeWriter("Could not fetch IP.", 'infoBox');
         });
-    </script>
+    }
+
+    displayInfo();
+  </script>
 </body>
 </html>
