@@ -1,234 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lenzy</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: monospace;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      font-size: 2rem;
-      text-align: center;
-      overflow-x: hidden;
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-    }
-    
-    .video-container {
-      width: 80%;
-      max-width: 800px;
-      border: 1px solid #333;
-    }
-    
-    video {
-      width: 100%;
-      display: block;
-    }
-
-    .info {
-      margin-top: 40px;
-      font-size: 1rem;
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 90vw;
-      white-space: pre-wrap;
-      text-align: center;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .lenzi-text {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      animation: glow 2s infinite alternate;
-      z-index: 1000;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;
-      }
-      to {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
-      }
-    }
-
-    .close-warning {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      font-size: 2rem;
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenzy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #video-bg {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+        
+        .content {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            margin: 10px 0;
+            font-size: 2.5em;
+        }
+        
+        .age {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .follow-me {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+    </style>
 </head>
 <body>
-  <div class="lenzi-text" id="lenziLink">Lenzy</div>
-  
-  <div class="close-warning" id="closeWarning">
-    Developer tools have been disabled. Please close this tab to continue lol
-  </div>
-
-  <div class="video-container">
-    <video controls>
-      <source src="lithe.mp4" type="video/mp4">
-      Your browser does not support the video tag.
+    <video autoplay muted loop id="video-bg">
+        <source src="video.mp4" type="video/mp4">
     </video>
-  </div>
+    
+    <div class="content">
+        <img src="pfp.png" alt="Profile Picture" class="profile-pic">
+        <h1>Lenzy</h1>
+        <div class="age">15 Years Old</div>
+        <div class="follow-me">Follow me</div>
+        <div class="social-icons">
+            <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon"></a>
+            <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670147.png" alt="YouTube" class="social-icon"></a>
+            <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670150.png" alt="Snapchat" class="social-icon"></a>
+            <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon"></a>
+        </div>
+    </div>
 
-  <div class="info" id="infoBox">
-Loading information
-  </div>
-
-  <script>
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12' || 
-          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
-          (e.ctrlKey && e.key === 'u')) {
-        e.preventDefault();
-        showCloseWarning();
-      }
-    });
-
-    let devToolsOpened = false;
-    const devToolsCheck = () => {
-      const widthThreshold = window.outerWidth - window.innerWidth > 160;
-      const heightThreshold = window.outerHeight - window.innerHeight > 160;
-      if ((widthThreshold || heightThreshold) && !devToolsOpened) {
-        devToolsOpened = true;
-        showCloseWarning();
-      }
-    };
-    setInterval(devToolsCheck, 1000);
-
-    function showCloseWarning() {
-      document.getElementById('closeWarning').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    document.getElementById('lenziLink').addEventListener('click', function() {
-      window.location.href = 'https://lenzy.pro'; 
-    });
-
-    const lenziElement = document.getElementById('lenziLink');
-    let isDragging = false;
-    let offsetX, offsetY;
-
-    lenziElement.addEventListener('mousedown', function(e) {
-      isDragging = true;
-      offsetX = e.clientX - lenziElement.getBoundingClientRect().left;
-      offsetY = e.clientY - lenziElement.getBoundingClientRect().top;
-      lenziElement.style.cursor = 'grabbing';
-    });
-
-    document.addEventListener('mousemove', function(e) {
-      if (isDragging) {
-        lenziElement.style.left = (e.clientX - offsetX) + 'px';
-        lenziElement.style.top = (e.clientY - offsetY) + 'px';
-      }
-    });
-
-    document.addEventListener('mouseup', function() {
-      isDragging = false;
-      lenziElement.style.cursor = 'pointer';
-    });
-
-    lenziElement.addEventListener('touchstart', function(e) {
-      isDragging = true;
-      const touch = e.touches[0];
-      offsetX = touch.clientX - lenziElement.getBoundingClientRect().left;
-      offsetY = touch.clientY - lenziElement.getBoundingClientRect().top;
-      e.preventDefault();
-    });
-
-    document.addEventListener('touchmove', function(e) {
-      if (isDragging) {
-        const touch = e.touches[0];
-        lenziElement.style.left = (touch.clientX - offsetX) + 'px';
-        lenziElement.style.top = (touch.clientY - offsetY) + 'px';
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    document.addEventListener('touchend', function() {
-      isDragging = false;
-    });
-
-    function typeWriter(text, elementId, speed = 50) {
-      let i = 0;
-      const element = document.getElementById(elementId);
-      element.innerHTML = '';
-      function type() {
-        if (i < text.length) {
-          element.innerHTML += text.charAt(i);
-          i++;
-          setTimeout(type, speed);
-        }
-      }
-      type();
-    }
-
-    function displayInfo() {
-      const userAgent = navigator.userAgent;
-      const language = navigator.language;
-      const platform = navigator.platform;
-      const screenSize = `${window.screen.width}x${window.screen.height}`;
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const hardwareConcurrency = navigator.hardwareConcurrency || 'Unknown';
-      const deviceMemory = navigator.deviceMemory || 'Unknown';
-      const historyLength = history.length;
-
-      fetch('https://api.ipify.org?format=json')
-        .then(res => res.json())
-        .then(data => {
-          const fullText = 
-`IP Address: ${data.ip}
-Browser: ${userAgent}
-Language: ${language}
-Platform: ${platform}
-Resolution: ${screenSize}
-Timezone: ${timezone}
-CPU Cores: ${hardwareConcurrency}
-RAM (est.): ${deviceMemory} GB
-History Length: ${historyLength}`;
-
-          typeWriter(fullText, 'infoBox', 35);
-        })
-        .catch(() => {
-          typeWriter("Could not fetch IP.", 'infoBox');
-        });
-    }
-
-    displayInfo();
-  </script>
+    <script>
+        // Auto-play the video with sound (may be restricted by browsers)
+        document.getElementById('video-bg').play();
+    </script>
 </body>
 </html>
