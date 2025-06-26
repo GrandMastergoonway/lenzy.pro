@@ -24,6 +24,8 @@
             min-width: 100%;
             min-height: 100%;
             z-index: -1;
+            /* Fallback if video doesn't load */
+            background: linear-gradient(45deg, #ff00cc, #3333ff);
         }
         
         .content {
@@ -77,8 +79,9 @@
     </style>
 </head>
 <body>
-    <video autoplay muted loop id="video-bg">
+    <video autoplay muted loop playsinline id="video-bg">
         <source src="x.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
     </video>
     
     <div class="content">
@@ -95,8 +98,14 @@
     </div>
 
     <script>
-        // Auto-play the video with sound (may be restricted by browsers)
-        document.getElementById('video-bg').play();
+        // Try to play video (may require user interaction on some browsers)
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('video-bg');
+            video.play().catch(error => {
+                console.log("Video autoplay prevented:", error);
+                // Show play button or handle the error
+            });
+        });
     </script>
 </body>
 </html>
